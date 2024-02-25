@@ -1,5 +1,5 @@
 from Main import LevelParsing
-from Main.PositionType import PositionType
+from Main.searchproblem.PositionType import PositionType
 from Main.searchproblem.GridProblem import GridProblem, Action
 from Main.searchproblem.Position import Position
 

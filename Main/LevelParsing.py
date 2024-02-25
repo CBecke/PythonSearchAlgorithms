@@ -1,5 +1,5 @@
 
-from .PositionType import PositionType
+from Main.searchproblem.PositionType import PositionType
 
 def parse_rectangle(level):
     """

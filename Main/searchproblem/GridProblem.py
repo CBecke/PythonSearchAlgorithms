@@ -1,4 +1,4 @@
-from Main.PositionType import PositionType
+from Main.searchproblem.PositionType import PositionType
 from Main.searchproblem.Position import Position
 from Main.searchproblem.SearchProblem import SearchProblem
 
