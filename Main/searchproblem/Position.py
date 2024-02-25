@@ -13,3 +13,7 @@ class Position:
 
     def __hash__(self):
         return hash((self.row, self.column))
+
+    @staticmethod
+    def manhattan_distance(position1, position2):
+        return abs(position1.row - position2.row) + abs(position1.column - position2.column)
