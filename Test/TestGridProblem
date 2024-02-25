@@ -1,0 +1,26 @@
+from Main import LevelParsing
+from Main.searchproblem.GridProblem import GridProblem, Action
+from Main.searchproblem.Position import Position
+
+
+def test_actions_open(self):
+    file_location = r"C:\Users\chris\PycharmProjects\SearchAlgorithms\Test\resources\levels\open_3x3.txt"
+    grid = LevelParsing.parse_rectangle(file_location)
+    gridProblem = GridProblem(grid)
+
+    topleft = Position(0, 0)
+    bottomright = Position(2, 2)
+    middle = Position(1, 1)
+
+    self.assertSetEqual(gridProblem.actions(topleft), {Action.DOWN, Action.RIGHT})
+    self.assertSetEqual(gridProblem.actions(bottomright), {Action.LEFT, Action.UP})
+    self.assertSetEqual(gridProblem.actions(middle), {Action.DOWN, Action.RIGHT, Action.LEFT, Action.UP})
+
+
+def test_actions_closed():
+    file_location = r"C:\Users\chris\PycharmProjects\SearchAlgorithms\Test\resources\levels\closed_unsolvable.txt"
+    grid = LevelParsing.parse_rectangle(file_location)
+    gridProblem = GridProblem(grid)
+
+    initial_state = gridProblem.initial_state
+    assert len(gridProblem.actions(initial_state)) == 0

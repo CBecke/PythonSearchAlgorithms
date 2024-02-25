@@ -1,6 +1,7 @@
 
+from .PositionType import PositionType
 
-def parseRectangle(level):
+def parse_rectangle(level):
     """
     Takes the path of a level as input and returns a 2d-list of int representing the level.
     In the representation, "0" is an empty square, "1" is a wall, "2" is the starting position,
@@ -8,10 +9,10 @@ def parseRectangle(level):
     """
 
     charMappings = {
-        ' ': 0,
-        '+': 1,
-        'i': 2,
-        'g': 3
+        ' ': PositionType.EMPTY.value,
+        '+': PositionType.WALL.value,
+        'i': PositionType.INITIAL.value,
+        'g': PositionType.GOAL.value
     }
 
     file = open(level, 'r')

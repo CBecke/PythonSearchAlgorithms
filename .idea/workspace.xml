@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304f9407-e475-46a5-a652-1648bd104fa5" name="Changes" comment="" />
+    <list default="true" id="304f9407-e475-46a5-a652-1648bd104fa5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Main/PositionType.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/algorithms/BFS.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/algorithms/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/searchproblem/GridProblem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/searchproblem/Position.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/searchproblem/SearchProblem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main/searchproblem/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/TestBFS/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/TestGridProblem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/resources/levels/closed_unsolvable.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/resources/levels/open_3x3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/searchproblem/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/searchproblem/test_GridProblem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SearchAlgorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SearchAlgorithms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/LevelParsing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/LevelParsing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestBFS/TestBFS.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestBFS/TestBFS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TestParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TestParser.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,26 +58,37 @@
   "keyToString": {
     "Python tests.Python tests for Test.TestParser.TestParser.executor": "Run",
     "Python tests.Python tests for Test.TestParser.TestParser.test_single_goal.executor": "Run",
+    "Python tests.Python tests for TestGridProblem.TestGridProblem.executor": "Run",
+    "Python tests.Python tests for test_GridProblem.test_actions.executor": "Run",
+    "Python tests.Python tests in TestBFS.py.executor": "Run",
+    "Python tests.Python tests in TestGridProblem.executor": "Run",
     "Python tests.Python tests in TestParser.py.executor": "Run",
+    "Python tests.pytest for test_GridProblem.test_actions_closed.executor": "Run",
+    "Python tests.pytest for test_GridProblem.test_actions_open.executor": "Debug",
+    "Python tests.pytest for test_GridProblem.test_find_goal_states.executor": "Run",
+    "Python tests.pytest for test_GridProblem.test_result.executor": "Run",
     "Python.LevelParsing.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/chris/PycharmProjects/SearchAlgorithms/Test/searchproblem/test_GridProblem.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\PycharmProjects\SearchAlgorithms\Main\searchproblem" />
       <recent name="C:\Users\chris\PycharmProjects\SearchAlgorithms\Main" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.pytest for test_GridProblem.test_find_goal_states">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="SearchAlgorithms" />
       <option name="ENV_FILES" value="" />
@@ -81,42 +112,129 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for Test.TestParser.TestParser" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_GridProblem.test_actions" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="SearchAlgorithms" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/searchproblem" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Test.TestParser.TestParser&quot;" />
+      <option name="_new_target" value="&quot;test_GridProblem.test_actions&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for Test.TestParser.TestParser.test_single_goal" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_GridProblem.test_actions_closed" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SearchAlgorithms" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/searchproblem" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Test.TestParser.TestParser.test_single_goal&quot;" />
+      <option name="_new_target" value="&quot;test_GridProblem.test_actions_closed&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_GridProblem.test_actions_open" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/searchproblem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_GridProblem.test_actions_open&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_GridProblem.test_find_goal_states" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/searchproblem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_GridProblem.test_find_goal_states&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_GridProblem.test_result" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/searchproblem" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_GridProblem.test_result&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_GridProblem.py" type="tests" factoryName="py.test" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\chris\PycharmProjects\SearchAlgorithms\.venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.12 (SearchAlgorithms)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Test/searchproblem/test_GridProblem.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python tests.pytest in test_GridProblem.py" />
+      <item itemvalue="Python tests.pytest for test_GridProblem.test_actions_closed" />
+      <item itemvalue="Python tests.pytest for test_GridProblem.test_actions_open" />
+      <item itemvalue="Python tests.pytest for test_GridProblem.test_find_goal_states" />
+      <item itemvalue="Python tests.pytest for test_GridProblem.test_result" />
+      <item itemvalue="Python tests.Python tests for test_GridProblem.test_actions" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for Test.TestParser.TestParser" />
-        <item itemvalue="Python tests.Python tests for Test.TestParser.TestParser.test_single_goal" />
+        <item itemvalue="Python tests.pytest for test_GridProblem.test_find_goal_states" />
+        <item itemvalue="Python tests.pytest for test_GridProblem.test_result" />
+        <item itemvalue="Python tests.pytest for test_GridProblem.test_actions_open" />
+        <item itemvalue="Python tests.pytest for test_GridProblem.test_actions_closed" />
+        <item itemvalue="Python tests.Python tests for test_GridProblem.test_actions" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +254,8 @@
       <option name="presentableId" value="Default" />
       <updated>1707836850649</updated>
       <workItem from="1707836873844" duration="5752000" />
-      <workItem from="1708689795028" duration="7411000" />
+      <workItem from="1708689795028" duration="23581000" />
+      <workItem from="1708854862925" duration="3167000" />
     </task>
     <servers />
   </component>
@@ -155,8 +274,12 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$pytest_for_test_GridProblem_test_find_goal_states.coverage" NAME="pytest for test_GridProblem.test_find_goal_states Coverage Results" MODIFIED="1708857875297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$pytest_for_test_GridProblem_test_actions_closed.coverage" NAME="pytest for test_GridProblem.test_actions_closed Coverage Results" MODIFIED="1708857216575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$pytest_for_test_GridProblem_test_result.coverage" NAME="pytest for test_GridProblem.test_result Coverage Results" MODIFIED="1708857642783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
     <SUITE FILE_PATH="coverage/SearchAlgorithms$main.coverage" NAME="main Coverage Results" MODIFIED="1707836974373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SearchAlgorithms$.coverage" NAME=" Coverage Results" MODIFIED="1708692560730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/SearchAlgorithms$LevelParsing.coverage" NAME="LevelParsing Coverage Results" MODIFIED="1708692183453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main" />
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$.coverage" NAME=" Coverage Results" MODIFIED="1708856655958" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$pytest_for_test_GridProblem_test_actions_open.coverage" NAME="pytest for test_GridProblem.test_actions_open Coverage Results" MODIFIED="1708857365022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
+    <SUITE FILE_PATH="coverage/SearchAlgorithms$LevelParsing.coverage" NAME="LevelParsing Coverage Results" MODIFIED="1708703817990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main" />
   </component>
 </project>
