@@ -2,10 +2,6 @@
 from abc import ABC, abstractmethod
 
 class SearchProblem(ABC):
-    def __init__(self):
-        self.initial_state = None
-        self.goal_states = []
-        self.solution = []
 
     @abstractmethod
     def actions(self, state):
@@ -26,8 +22,9 @@ class SearchProblem(ABC):
     @abstractmethod
     def action_cost(self, state_from, action):
         """
-        :return: The numeric cost of applying action a in stateFrom to reach stateTo.
+        :return: The numeric cost of applying action a in state_from, resulting in state_to.
         """
+        pass
 
     @abstractmethod
     def find_initial_state(self):
@@ -37,9 +34,10 @@ class SearchProblem(ABC):
     def find_goal_states(self):
         pass
 
+    @abstractmethod
     def is_initial_state(self, state):
-        return state is not None and self.initial_state == state
+        pass
 
+    @abstractmethod
     def is_goal_state(self, state):
-        return state in self.goal_states
-
+        pass

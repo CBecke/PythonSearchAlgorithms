@@ -1,6 +1,7 @@
-from Main.searchproblem.PositionType import PositionType
-from Main.searchproblem.Position import Position
-from Main.searchproblem.SearchProblem import SearchProblem
+
+from Main.searchproblem.position_type import PositionType
+from Main.searchproblem.position import Position
+from Main.searchproblem.search_problem import SearchProblem
 
 from enum import Enum, auto
 
@@ -15,11 +16,12 @@ class Action(Enum):
 
 class GridProblem(SearchProblem):
     """
-    Defines a 2d grid problem where the state is represented by the (row, col)-position of the agent.
+    Defines a 2d grid problem where the state is represented by the (row, col)-position of the agent. (0,0) is the top
+    left position [note that the encapsulating wall in the txt input is not part of the grid]. (0,1) is thus the
+    1st (top) row and 2nd column from the left.
     """
 
     def __init__(self, grid):
-        super().__init__()
         self.grid = grid
         self.initial_state = self.find_initial_state()
         self.goal_states = self.find_goal_states()
@@ -51,6 +53,12 @@ class GridProblem(SearchProblem):
 
     def action_cost(self, state_from, action):
         return 1
+
+    def is_initial_state(self, state):
+        return state is not None and self.initial_state == state
+
+    def is_goal_state(self, state):
+        return state in self.goal_states
 
     def get(self, state):
         return self.grid[state.row][state.column]

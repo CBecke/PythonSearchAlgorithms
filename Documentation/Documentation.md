@@ -15,4 +15,4 @@ The overall goal of this project is to implement search algorithms and to show h
 
 
 - search algorithm
-  - BFS, DFS, backtracking, depth-limited, iterative deepening, (greedy) best-first, bidirectional, Beam, A* and weighted A* and iterative-deepening A* search ((if an interesting heuristic is found), recursive best-first, simplified memory-bounded A*, memory-bounded A*
+  - BFS, DFS, backtracking, depth-limited, iterative deepening, (greedy) best-first, bidirectional, Beam, A* and weighted A* and iterative-deepening A* search (if an interesting heuristic is found), recursive best-first, simplified memory-bounded A*, memory-bounded A*
