@@ -1,4 +1,4 @@
-
+from Main.model.level_parsing import parse_rectangle
 from Main.model.searchproblem.position_type import PositionType
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem
@@ -32,6 +32,9 @@ class GridProblem(SearchProblem):
             Action.LEFT: lambda state: Position(state.row, state.column - 1),
             Action.RIGHT: lambda state: Position(state.row, state.column + 1)
         }
+
+    def get_state(self):
+        return self.grid
 
     def actions(self, state):
         """
@@ -79,3 +82,16 @@ class GridProblem(SearchProblem):
                 if self.get(Position(row, column)) == PositionType.GOAL.value:
                     goals.add(Position(row, column))
         return goals
+
+    def update_state(self, representation):
+        """ accepts either a string which can be parsed into a grid, or an int representing the number of squares per
+            axis"""
+        assert isinstance(representation, int) or isinstance(representation, str)
+        if isinstance(representation, int):
+            self.grid = [[PositionType.EMPTY for col in range(representation)] for row in range(representation)]
+        else:
+            self.grid = parse_rectangle(representation)
+
+        return self.grid
+
+

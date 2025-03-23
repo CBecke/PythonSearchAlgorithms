@@ -1,10 +1,9 @@
-import sys
-
-from PyQt6.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, \
+from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
     QSplitter
 
+from Main.model.searchproblem.search_problem import SearchProblem
 from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
-from Main.view.left_pane.GridWidget import GridWidget
+from Main.view.left_pane.grid.GridWidget import GridWidget
 from Main.view.right_pane.AlgorithmDescriptionPane import AlgorithmDescriptionPane
 from Main.view.right_pane.AlgorithmDropdownPane import AlgorithmDropdownPane
 from Main.view.right_pane.DrawChoicePane import DrawChoicePane
@@ -20,7 +19,7 @@ RIGHT_PANE_WIDTH = WINDOW_WIDTH - LEFT_PANE_WIDTH
 SLIDER_SPEED_RANGE = (0,100)
 
 class SearchWindow(QMainWindow):
-    def __init__(self, publisher):
+    def __init__(self, publisher, state):
         super().__init__()
         self.publisher = publisher
         self.setWindowTitle("Search Algorithm Illustrator")
@@ -32,26 +31,24 @@ class SearchWindow(QMainWindow):
 
         # splitter ensures the wanted size ratio between leftPane and rightPane
         self.horizontal_splitter = QSplitter()
-        self.createLeftPane()
+        self.createLeftPane(state)
         self.createRightPane()
         self.horizontal_splitter.setSizes([LEFT_PANE_WIDTH, RIGHT_PANE_WIDTH])
 
         self.generalLayout.addWidget(self.horizontal_splitter)
 
 
-
-
-    def createLeftPane(self):
+    def createLeftPane(self, state):
         leftPaneWidget = QWidget()
         self.leftPane = QVBoxLayout(leftPaneWidget)
 
-        self.createGrid()
+        self.createGrid(state)
         self.createDimensionChoicePane()
 
         self.horizontal_splitter.addWidget(leftPaneWidget)
 
-    def createGrid(self):
-        self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, 15, 15)
+    def createGrid(self, state):
+        self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, state, self.publisher)
         self.leftPane.addWidget(self.grid)
 
     def createDimensionChoicePane(self):
@@ -72,7 +69,7 @@ class SearchWindow(QMainWindow):
         self.horizontal_splitter.addWidget(rightPaneWidget)
 
     def createDrawChoicePane(self):
-        self.drawChoicePane = DrawChoicePane()
+        self.drawChoicePane = DrawChoicePane(self.publisher)
         self.rightPane.addWidget(self.drawChoicePane)
 
     def createAlgorithmDropdownPane(self):
@@ -95,13 +92,23 @@ class SearchWindow(QMainWindow):
         self.statisticsPane = StatisticsPane()
         self.rightPane.addWidget(self.statisticsPane)
 
+    def update_problem(self, problem: SearchProblem):
+        grid = problem.get_state()
+        self.leftPane.removeWidget(self.grid)
+        self.grid.deleteLater()
 
+        self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, grid, self.publisher)
+        self.leftPane.insertWidget(0, self.grid)
+
+"""
 def main():
     app = QApplication([])
-    searchWindow = SearchWindow()
+    publisher = Publisher()
+    searchWindow = SearchWindow(publisher)
     searchWindow.show()
     sys.exit(app.exec())
 
 
 if __name__ == '__main__':
     main()
+"""

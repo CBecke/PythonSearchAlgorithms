@@ -2,14 +2,16 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QGridLayout, QLabel, QApplication
 
 from Main.model.searchproblem.grid_problem import GridProblem
-from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.position_type import PositionType
+from Main.observer_pattern.event.event import Event
+from Main.observer_pattern.event.event_type import EventType
+from Main.view.left_pane.grid.gridLabel import GridLabel
 
 
 class GridWidget(QWidget):
-    def __init__(self, widgetWidth, widgetHeight, state):
+    def __init__(self, widgetWidth, widgetHeight, state, publisher):
         super().__init__()
-
+        self.publisher = publisher
         rows = len(state)
         cols = len(state[0])
         self.widgetWidth = widgetWidth
@@ -21,26 +23,6 @@ class GridWidget(QWidget):
         # make a grid layout with no padding between squares
         self.createGridLayout(rows, cols)
 
-    def make_square(self, position_type: PositionType):
-        label = QLabel()
-        label.setFixedSize(self.squareLength, self.squareLength)
-        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        color = self.get_square_color(position_type)
-        label.setStyleSheet(f"background-color: {color}; border: 1px solid gray;")
-        
-        return label
-
-
-    @staticmethod
-    def get_square_color(position_type:PositionType):
-        colors = {
-            PositionType.EMPTY: "white",
-            PositionType.WALL: "black",
-            PositionType.INITIAL: "darkGreen",
-            PositionType.GOAL: "darkRed",
-        }
-        return colors[position_type]
-
     def createGridLayout(self, nRows, nCols):
         self.layout = QGridLayout()
         self.layout.setSpacing(0)
@@ -51,10 +33,10 @@ class GridWidget(QWidget):
 
         for row in range(nRows):
             for col in range(nCols):
-                label = self.make_square(PositionType.EMPTY)
+                label = GridLabel(self.squareLength)
+                self.publisher.subscribe(EventType.RadioToggled, label)
                 self.layout.addWidget(label, row, col)
                 self.grid[row][col] = label
-
 
 
 if __name__ == "__main__":

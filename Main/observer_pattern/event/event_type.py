@@ -2,4 +2,5 @@
 from enum import Enum, auto
 
 class EventType(Enum):
-    DIMENSIONAPPLYPRESSED
+    DimensionApplyPressed = auto(),
+    RadioToggled = auto(),

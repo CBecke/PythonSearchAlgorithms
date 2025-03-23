@@ -41,3 +41,11 @@ class SearchProblem(ABC):
     @abstractmethod
     def is_goal_state(self, state):
         pass
+
+    @abstractmethod
+    def update_state(self, representation):
+        pass
+
+    @abstractmethod
+    def get_state(self):
+        pass
