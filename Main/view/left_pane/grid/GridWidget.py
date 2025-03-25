@@ -5,6 +5,7 @@ from Main.model.searchproblem.grid_problem import GridProblem
 from Main.model.searchproblem.position_type import PositionType
 from Main.observer_pattern.event.event import Event
 from Main.observer_pattern.event.event_type import EventType
+from Main.view.left_pane.grid.label.impl.agentSquare import AgentSquare
 from Main.view.left_pane.grid.label.impl.emptySquare import EmptySquare
 from Main.view.left_pane.grid.label.squareFactory import SquareFactory
 
@@ -19,7 +20,8 @@ class GridWidget(QWidget):
         self.widgetHeight = widgetHeight
         self.squareLength = self.widgetWidth // max(rows, cols)
 
-        self.currentToggledSquare = "empty"
+        self.currentToggledSquare = "agent"
+        self.currentAgentPos = None
 
         # grid to hold squares [labels]
         self.grid = [[None for _ in range(cols)] for _ in range(rows)]
@@ -46,21 +48,31 @@ class GridWidget(QWidget):
         self.currentToggledSquare = event.data
 
     def mouseMoveEvent(self, event: QMouseEvent):
-        col, row = self.getSquareIndices(event)
-        print(row, col)
-        self.updateSquare(row, col)
+        self.mouseUpdate(event)
 
     def mousePressEvent(self, event: QMouseEvent):
-        col, row = self.getSquareIndices(event)
-        print(row, col)
-        self.updateSquare(row, col)
+        self.mouseUpdate(event)
 
-    def updateSquare(self, row, col):
+    def mouseUpdate(self, event: QMouseEvent):
+        # TODO: debug why program crashes when clicking and hovering outside of the grid while drawing agent.
+        col, row = self.getSquareIndices(event)
+        # only allow a single agent on the grid
+        currentSquare = self.grid[row][col]
+        if isinstance(currentSquare, AgentSquare):
+            if self.currentAgentPos is not None:
+                # turn old agent square into an empty square
+                prevAgentX, prevAgentY = self.currentAgentPos
+                self.updateSquare(prevAgentX, prevAgentY, "empty")
+            self.currentAgentPos = (row, col)
+
+        self.updateSquare(row, col, self.currentToggledSquare)
+
+    def updateSquare(self, row, col, typeTo: str):
         old_widget = self.grid[row][col]
         self.layout.removeWidget(old_widget)
         old_widget.deleteLater()
 
-        new_widget = SquareFactory.make(self.currentToggledSquare, self.squareLength)
+        new_widget = SquareFactory.make(typeTo, self.squareLength)
         self.layout.addWidget(new_widget, row, col)
         self.grid[row][col] = new_widget
 

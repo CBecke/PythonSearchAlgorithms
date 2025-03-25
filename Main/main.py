@@ -24,7 +24,6 @@ def main():
     view.show()
     model = Model(problem)
     controller = Controller(model, view)
-    publisher.subscribe(EventType.DimensionApplyPressed, controller)
 
     sys.exit(app.exec())
 

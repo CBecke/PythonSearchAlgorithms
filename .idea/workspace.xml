@@ -5,42 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="304f9407-e475-46a5-a652-1648bd104fa5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Main/search/data_structure/node.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/search/data_structure/priority_queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/search/data_structure/queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/search/data_structure/stack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/search/search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Main/searchproblem/position.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/data_structure/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/data_structure/test_priority_queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/data_structure/test_queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/data_structure/test_stack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/resources/levels/simple_open_3goals.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/searchproblem/test_gridproblem.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/test_level_parsing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SearchAlgorithms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SearchAlgorithms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Documentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Documentation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/LevelParsing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/algorithms/BFS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/algorithms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/level_parsing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/datastructures/Node.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/datastructures/Queue.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/datastructures/Stack.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/datastructures/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/search/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/searchproblem/GridProblem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/searchproblem/grid_problem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/searchproblem/Position.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/searchproblem/PositionType.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/searchproblem/position_type.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main/searchproblem/SearchProblem.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/searchproblem/search_problem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBFS/TestBFS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/TestBFS/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/search/data_structure/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/datastructures/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/search/data_structure/frontier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/datastructures/test_Queue.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/resources/levels/simple_open_3agents.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/searchproblem/test_GridProblem.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/test_LevelParsing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/view/left_pane/grid/GridWidget.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/view/left_pane/grid/GridWidget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main/view/search_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main/view/search_window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CBecke&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CBecke/PythonSearchAlgorithms.git&quot;,
+    &quot;accountId&quot;: &quot;4b06e30f-76ae-4979-bcdc-f0d95d1ee493&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
@@ -70,33 +50,125 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_gridproblem.test_initialization.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_priority_queue.test_min_heapify_no_change_priority_queue.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_priority_queue.test_min_heapify_priority_queue.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_priority_queue.test_priority_queue.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in Test.executor&quot;: &quot;Debug&quot;,
-    &quot;Python tests.Python tests in test_level_parsing.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_GridProblem.executor&quot;: &quot;Coverage&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for Test.model.search.data_structure.test_priority_queue.executor": "Run",
+    "Python tests.Python tests for Test.searchproblem.test_gridproblem.test_initialization.executor": "Run",
+    "Python tests.Python tests for test_gridproblem.test_initialization.executor": "Run",
+    "Python tests.Python tests for test_priority_queue.test_min_heapify_no_change_priority_queue.executor": "Run",
+    "Python tests.Python tests for test_priority_queue.test_min_heapify_priority_queue.executor": "Run",
+    "Python tests.Python tests for test_priority_queue.test_priority_queue.executor": "Run",
+    "Python tests.Python tests in Test.executor": "Run",
+    "Python tests.Python tests in test_level_parsing.py.executor": "Run",
+    "Python.AlgorithmDescription.executor": "Run",
+    "Python.AlgorithmDescriptionPane.executor": "Run",
+    "Python.AlgorithmDropdownPane.executor": "Run",
+    "Python.DimensionChoiceWidget.executor": "Run",
+    "Python.DrawChoicePane.executor": "Run",
+    "Python.GridWidget.executor": "Run",
+    "Python.OptionsPane.executor": "Run",
+    "Python.SpeedSliderPane.executor": "Run",
+    "Python.calculator.executor": "Run",
+    "Python.informed_searcher.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.sandbox.executor": "Run",
+    "Python.search_window.executor": "Debug",
+    "Python.test_GridProblem.executor": "Coverage",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/chris/Dropbox/Christian/Programmering/Projects/Python/Main/main.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Test\searchproblem" />
-      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\search\data_structure" />
+      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\view\left_pane\grid\label\impl" />
+      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\view\left_pane\grid\label" />
+      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\view\left_pane\grid" />
+      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\view\left_pane" />
+      <recent name="C:\Users\chris\Dropbox\Christian\Programmering\Projects\Python\Main\observer_pattern\event" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in Test">
-    <configuration name="Python tests for Test.searchproblem.test_gridproblem.test_initialization" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (Python)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test.model.search.data_structure.test_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/model/search/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test.model.search.data_structure.test_priority_queue&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_no_change_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/model/search/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test.model.search.data_structure.test_priority_queue.test_min_heapify_no_change_priority_queue&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SearchAlgorithms" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/model/search/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test.model.search.data_structure.test_priority_queue.test_min_heapify_priority_queue&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test.model.searchproblem.test_gridproblem.test_initialization" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="SearchAlgorithms" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,55 +180,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Test.searchproblem.test_gridproblem.test_initialization&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_priority_queue.test_min_heapify_no_change_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="SearchAlgorithms" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/data_structure" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_priority_queue.test_min_heapify_no_change_priority_queue&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_priority_queue.test_min_heapify_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="SearchAlgorithms" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/data_structure" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_priority_queue.test_min_heapify_priority_queue&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_priority_queue.test_priority_queue" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="SearchAlgorithms" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/data_structure" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_priority_queue.test_priority_queue&quot;" />
+      <option name="_new_target" value="&quot;Test.model.searchproblem.test_gridproblem.test_initialization&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -176,13 +200,21 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue" />
+      <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_no_change_priority_queue" />
+      <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_priority_queue" />
+      <item itemvalue="Python tests.Python tests for Test.model.searchproblem.test_gridproblem.test_initialization" />
+      <item itemvalue="Python tests.Python tests in Test" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue" />
         <item itemvalue="Python tests.Python tests in Test" />
-        <item itemvalue="Python tests.Python tests for test_priority_queue.test_priority_queue" />
-        <item itemvalue="Python tests.Python tests for test_priority_queue.test_min_heapify_priority_queue" />
-        <item itemvalue="Python tests.Python tests for test_priority_queue.test_min_heapify_no_change_priority_queue" />
-        <item itemvalue="Python tests.Python tests for Test.searchproblem.test_gridproblem.test_initialization" />
+        <item itemvalue="Python tests.Python tests for Test.model.searchproblem.test_gridproblem.test_initialization" />
+        <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_priority_queue" />
+        <item itemvalue="Python tests.Python tests for Test.model.search.data_structure.test_priority_queue.test_min_heapify_no_change_priority_queue" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +239,30 @@
       <workItem from="1737888710996" duration="13787000" />
       <workItem from="1738687189556" duration="6115000" />
       <workItem from="1738776206967" duration="5303000" />
+      <workItem from="1738949424489" duration="4265000" />
+      <workItem from="1739000420995" duration="9339000" />
+      <workItem from="1739095884495" duration="9151000" />
+      <workItem from="1739380501016" duration="3735000" />
+      <workItem from="1740310218857" duration="16716000" />
+      <workItem from="1740331158974" duration="15000" />
+      <workItem from="1740504486821" duration="6193000" />
+      <workItem from="1740831428017" duration="4399000" />
+      <workItem from="1740907825106" duration="21881000" />
+      <workItem from="1740945145228" duration="1404000" />
+      <workItem from="1742735165556" duration="2466000" />
+      <workItem from="1742738115578" duration="5150000" />
+      <workItem from="1742844864333" duration="1837000" />
+      <workItem from="1742926631355" duration="1926000" />
     </task>
+    <task id="LOCAL-00001" summary="Search problem and data structures for search implemented and tested.">
+      <option name="closed" value="true" />
+      <created>1738949554761</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738949554761</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,19 +279,48 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merge" />
+    <MESSAGE value="Search problem and data structures for search implemented and tested." />
+    <MESSAGE value="restructuring of project" />
+    <option name="LAST_COMMIT_MESSAGE" value="restructuring of project" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Test/data_structure/test_priority_queue.py</url>
+          <url>file://$PROJECT_DIR$/Test/model/search/data_structure/test_priority_queue.py</url>
           <line>111</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Main/view/right_pane/AlgorithmDropdownPane.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Main/view/left_pane/grid/GridWidget.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1738781498976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/data_structure" />
+    <SUITE FILE_PATH="coverage/Python$OptionsPane.coverage" NAME="OptionsPane Coverage Results" MODIFIED="1740330383553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/right_pane" />
+    <SUITE FILE_PATH="coverage/Python$DimensionChoiceWidget.coverage" NAME="DimensionChoiceWidget Coverage Results" MODIFIED="1740831661241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/left_pane" />
+    <SUITE FILE_PATH="coverage/Python$AlgorithmDescriptionPane.coverage" NAME="AlgorithmDescriptionPane Coverage Results" MODIFIED="1740329347101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/right_pane" />
+    <SUITE FILE_PATH="coverage/Python$GridWidget.coverage" NAME="GridWidget Coverage Results" MODIFIED="1740914036641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/left_pane" />
+    <SUITE FILE_PATH="coverage/Python$DrawChoicePane.coverage" NAME="DrawChoicePane Coverage Results" MODIFIED="1740329187116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/right_pane" />
+    <SUITE FILE_PATH="coverage/Python$informed_searcher.coverage" NAME="informed_searcher Coverage Results" MODIFIED="1740325918699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/model/search/searcher/informed" />
+    <SUITE FILE_PATH="coverage/Python$SpeedSliderPane.coverage" NAME="SpeedSliderPane Coverage Results" MODIFIED="1740330025820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/right_pane" />
+    <SUITE FILE_PATH="coverage/Python$sandbox.coverage" NAME="sandbox Coverage Results" MODIFIED="1739383436215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/learning_GUI" />
+    <SUITE FILE_PATH="coverage/Python$calculator.coverage" NAME="calculator Coverage Results" MODIFIED="1739380641708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/learning_GUI" />
+    <SUITE FILE_PATH="coverage/Python$AlgorithmDropdownPane.coverage" NAME="AlgorithmDropdownPane Coverage Results" MODIFIED="1740326031337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view/right_pane" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1740909435922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/model/search/data_structure" />
     <SUITE FILE_PATH="coverage/Python$test_GridProblem.coverage" NAME="test_GridProblem Coverage Results" MODIFIED="1736006742785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/searchproblem" />
+    <SUITE FILE_PATH="coverage/Python$main.coverage" NAME="main Coverage Results" MODIFIED="1742928461485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Python$AlgorithmDescription.coverage" NAME="AlgorithmDescription Coverage Results" MODIFIED="1740324232469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/model/search/searcher" />
+    <SUITE FILE_PATH="coverage/Python$search_window.coverage" NAME="search_window Coverage Results" MODIFIED="1740914599788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Main/view" />
   </component>
 </project>
