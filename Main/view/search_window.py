@@ -2,6 +2,8 @@ from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
     QSplitter
 
 from Main.model.searchproblem.search_problem import SearchProblem
+from Main.observer_pattern.event.event import Event
+from Main.observer_pattern.event.event_type import EventType
 from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
 from Main.view.left_pane.grid.GridWidget import GridWidget
 from Main.view.right_pane.AlgorithmDescriptionPane import AlgorithmDescriptionPane
@@ -22,6 +24,7 @@ class SearchWindow(QMainWindow):
     def __init__(self, publisher, state):
         super().__init__()
         self.publisher = publisher
+        self.publisher.subscribe(EventType.DimensionApplyPressed, self)
         self.setWindowTitle("Search Algorithm Illustrator")
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.generalLayout = QHBoxLayout()
@@ -99,6 +102,18 @@ class SearchWindow(QMainWindow):
 
         self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, grid, self.publisher)
         self.leftPane.insertWidget(0, self.grid)
+
+    def update_subscriber(self, event: Event):
+        if event.type == EventType.DimensionApplyPressed:
+            print("update_subscriber search_window")
+            gridSize = event.data
+            dimensionedGrid = [[0 for j in range(gridSize)] for i in range(gridSize)]
+            self.leftPane.removeWidget(self.grid)
+            self.grid.deleteLater()
+            self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher)
+            self.leftPane.insertWidget(0, self.grid)
+
+
 
 """
 def main():
