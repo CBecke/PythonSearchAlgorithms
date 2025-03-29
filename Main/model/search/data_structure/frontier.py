@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 
 
 class Frontier:
@@ -17,5 +17,5 @@ class Frontier:
         pass
 
     @abstractmethod
-    def add(self, node: Node):
+    def add(self, node: SearchNode):
         pass

@@ -1,5 +1,5 @@
 from Main.model.search.data_structure.frontier import Frontier
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 
 
 class Stack(Frontier):
@@ -20,7 +20,7 @@ class Stack(Frontier):
     def top(self):
         return self.head
 
-    def add(self, node: Node):
+    def add(self, node: SearchNode):
         if self.is_empty():
             node.next = None
         else:

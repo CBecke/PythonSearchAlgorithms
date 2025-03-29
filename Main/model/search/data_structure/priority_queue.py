@@ -6,7 +6,7 @@ a standard, dynamic array-based binary min-heap. It should be extra simple since
 The implementation will be based on CLRS
 """
 from Main.model.search.data_structure.frontier import Frontier
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 
 
 class PriorityQueue(Frontier):
@@ -46,7 +46,7 @@ class PriorityQueue(Frontier):
             return None
         return self.heap[0]
 
-    def add(self, node: Node):
+    def add(self, node: SearchNode):
         self.heap.append(node)
         self.node_costs[node] = self.f(self.search_problem, node)
         self.heap_decrease_key(self.heap_size()-1, node)

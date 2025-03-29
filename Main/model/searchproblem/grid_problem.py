@@ -96,6 +96,9 @@ class GridProblem(SearchProblem):
             self.grid = representation
         else:
             raise ValueError("invalid input type")
+
+        self.initial_state = self.find_initial_state()
+        self.goal_states = self.find_goal_states()
         return self.grid
 
 

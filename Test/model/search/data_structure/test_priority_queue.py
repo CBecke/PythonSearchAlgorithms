@@ -1,8 +1,8 @@
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 from Main.model.search.data_structure.priority_queue import PriorityQueue
 from Main.model.searchproblem.search_problem import SearchProblem
 
-[one, two, three, four, five, six, seven, nine, ten, fourteen] = [Node(None, None, None, None) for i in range(10)]
+[one, two, three, four, five, six, seven, nine, ten, fourteen] = [SearchNode(None, None, None, None) for i in range(10)]
 
 def dummy_heuristic(search_problem, node):
     values = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, nine: 9, ten: 10, fourteen: 14 }

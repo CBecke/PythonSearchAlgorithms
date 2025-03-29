@@ -1,4 +1,4 @@
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 from Main.model.search.searcher.informed.informed_searcher import InformedSearcher
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem
@@ -6,7 +6,7 @@ from Main.model.searchproblem.search_problem import SearchProblem
 
 class BestFirstSearcher(InformedSearcher):
 
-    def f(self, problem: SearchProblem, current: Node):
+    def f(self, problem: SearchProblem, current: SearchNode):
         minimum_manhattan_dist = 1000000
 
         for goal in problem.find_goal_states():

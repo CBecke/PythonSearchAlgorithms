@@ -1,5 +1,5 @@
 
-from Main.model.search.data_structure.node import Node
+from Main.model.searchproblem.search_node import SearchNode
 from Main.model.search.data_structure.queue import Queue
 
 
@@ -9,7 +9,7 @@ def test_empty_queue():
 
 def test_add_queue():
     queue = Queue()
-    node = Node(5, None, None, None)
+    node = SearchNode(5, None, None, None)
     assert queue.add(node) == node
     assert not queue.is_empty()
 
@@ -17,7 +17,7 @@ def test_top_queue():
     queue = Queue()
     assert queue.top() is None
 
-    node = Node(5, None, None, None)
+    node = SearchNode(5, None, None, None)
     queue.add(node)
     assert queue.top() == node
     assert not queue.is_empty()
@@ -26,7 +26,7 @@ def test_pop_queue():
     queue = Queue()
     assert queue.pop() is None
 
-    node = Node(5, None, None, None)
+    node = SearchNode(5, None, None, None)
     queue.add(node)
     assert not queue.is_empty()
     assert queue.pop() is node
@@ -36,9 +36,9 @@ def test_pop_queue():
 def test_combined_queue():
     queue = Queue()
 
-    one = Node(1, None, None, None)
-    two = Node(2, None, None, None)
-    three = Node(3, None, None, None)
+    one = SearchNode(1, None, None, None)
+    two = SearchNode(2, None, None, None)
+    three = SearchNode(3, None, None, None)
 
     assert queue.add(one) == one
     assert queue.add(two) == two
