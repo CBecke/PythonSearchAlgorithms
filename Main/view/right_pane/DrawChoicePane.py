@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QApplication, QPushButton, QGridLayout, QRadioButton, \
     QVBoxLayout
 
+from Main.observer_pattern.event.ResetPressedEvent import ResetPressedEvent
 from Main.observer_pattern.event.event_type import EventType
 from Main.observer_pattern.event.radio_toggled_event import RadioToggledEvent
 
@@ -39,6 +40,8 @@ class DrawChoicePane(QWidget):
 
         outerLayout = QVBoxLayout()
         resetButton = QPushButton("Reset")
+        resetButton.clicked.connect(self.resetGrid)
+
         outerLayout.addLayout(radioLayout)
         outerLayout.addSpacing(30)
         outerLayout.addWidget(resetButton)
@@ -49,6 +52,9 @@ class DrawChoicePane(QWidget):
         button = self.sender()
         if button.isChecked():
             self.publisher.notify(EventType.RadioToggled, RadioToggledEvent(button.text()))
+
+    def resetGrid(self):
+        self.publisher.notify(EventType.ResetPressed, ResetPressedEvent())
 
 
 

@@ -32,6 +32,9 @@ class SearchWindow(QMainWindow):
         centralWidget.setLayout(self.generalLayout)
         self.setCentralWidget(centralWidget)
 
+        self.toggledRadioButton = "agent"
+        self.publisher.subscribe(EventType.RadioToggled, self)
+
         # splitter ensures the wanted size ratio between leftPane and rightPane
         self.horizontal_splitter = QSplitter()
         self.createLeftPane(state)
@@ -105,13 +108,14 @@ class SearchWindow(QMainWindow):
 
     def update_subscriber(self, event: Event):
         if event.type == EventType.DimensionApplyPressed:
-            print("update_subscriber search_window")
             gridSize = event.data
             dimensionedGrid = [[0 for j in range(gridSize)] for i in range(gridSize)]
             self.leftPane.removeWidget(self.grid)
             self.grid.deleteLater()
-            self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher)
+            self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher, self.toggledRadioButton)
             self.leftPane.insertWidget(0, self.grid)
+        elif event.type == EventType.RadioToggled:
+            self.toggledRadioButton = event.data
 
 
 
