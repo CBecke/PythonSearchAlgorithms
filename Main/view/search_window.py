@@ -91,7 +91,7 @@ class SearchWindow(QMainWindow):
         self.rightPane.addWidget(self.speedSlider)
 
     def createOptionsPane(self):
-        self.optionsPane = OptionsPane()
+        self.optionsPane = OptionsPane(self.publisher)
         self.rightPane.addWidget(self.optionsPane)
 
     def createStatisticsPane(self):
@@ -116,6 +116,10 @@ class SearchWindow(QMainWindow):
             self.leftPane.insertWidget(0, self.grid)
         elif event.type == EventType.RadioToggled:
             self.toggledRadioButton = event.data
+
+    def get_grid_representation(self):
+        return self.grid.get_grid()
+
 
 
 

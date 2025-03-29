@@ -29,15 +29,15 @@ class InformedSearcher(LoggedSearcher, AlgorithmDescription, ABC):
             if problem.is_goal_state(node.state):
                 return log
 
+            generated = set()
             for child in self.expand(problem, node):
                 s = child.state
-                generated = set()
                 if s not in reached or child.path_cost < reached[s]:
                     generated.add(child)
                     reached[s] = child.path_cost
                     frontier.add(child)
 
-                log.add_generated(generated)
+            log.add_generated(generated)
         return SearchLog() # return an empty log if the search fails
 
     @staticmethod

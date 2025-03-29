@@ -12,7 +12,8 @@ def parse_rectangle(level):
         ' ': PositionType.EMPTY.value,
         '+': PositionType.WALL.value,
         'i': PositionType.INITIAL.value,
-        'g': PositionType.GOAL.value
+        'g': PositionType.GOAL.value,
+
     }
 
     with open(level, 'r') as file:

@@ -88,6 +88,9 @@ class GridWidget(QWidget):
         y = event.pos().y() // self.squareLength
         return x, y
 
+    def get_grid(self):
+        return self.grid
+
 if __name__ == "__main__":
     import sys
 

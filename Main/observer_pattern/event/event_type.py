@@ -5,3 +5,5 @@ class EventType(Enum):
     DimensionApplyPressed = auto(),
     RadioToggled = auto(),
     ResetPressed = auto(),
+    StartPressed = auto(),
+

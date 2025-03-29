@@ -6,13 +6,13 @@ class SearchLog:
         self.generated = generated or Queue() # Queue<set<Node>>
         self.expanded = expanded or Queue() # Queue<Node>
 
-    def add_generated(self, nodes):
+    def add_generated(self, nodes_set):
         """ logs a deepcopy of the input collection of nodes """
-        self.generated.put(deepcopy(nodes))
+        self.generated.add(deepcopy(nodes_set))
 
     def add_expanded(self, node):
         """ logs a deepcopy of the input node """
-        self.expanded.put(deepcopy(node))
+        self.expanded.add(deepcopy(node))
 
     def __iter__(self):
         for gen, exp in zip(self.generated, self.expanded):

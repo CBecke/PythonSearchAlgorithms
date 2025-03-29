@@ -86,12 +86,16 @@ class GridProblem(SearchProblem):
     def update_state(self, representation):
         """ accepts either a string which can be parsed into a grid, or an int representing the number of squares per
             axis"""
-        assert isinstance(representation, int) or isinstance(representation, str)
         if isinstance(representation, int):
             self.grid = [[PositionType.EMPTY for col in range(representation)] for row in range(representation)]
-        else:
+        elif isinstance(representation, str):
             self.grid = parse_rectangle(representation)
 
+        # given the "actual" grid problem: list[list[PositionType.value:int]]. Must be non-empty.
+        elif isinstance(representation, list) and isinstance(representation[0], list) and isinstance(representation[0][0], int):
+            self.grid = representation
+        else:
+            raise ValueError("invalid input type")
         return self.grid
 
 
