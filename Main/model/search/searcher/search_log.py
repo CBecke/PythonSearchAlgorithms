@@ -17,8 +17,8 @@ class SearchLog:
         self.expanded.add(deepcopy(node))
 
     def __iter__(self):
-        for gen, exp in zip(self.generated, self.expanded):
-            yield gen, exp
+        for node_generated, node_expanded in zip(self.generated, self.expanded):
+            yield node_generated, node_expanded
 
 
 

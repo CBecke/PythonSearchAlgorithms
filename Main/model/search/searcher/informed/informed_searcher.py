@@ -35,7 +35,7 @@ class InformedSearcher(LoggedSearcher, AlgorithmDescription, ABC):
             for child in self.expand(problem, state_node):
                 s = child.state
                 if s not in reached or child.path_cost < reached[s]:
-                    generated.add(Node(child))
+                    generated.add(child)
                     reached[s] = child.path_cost
                     frontier.add(child)
 

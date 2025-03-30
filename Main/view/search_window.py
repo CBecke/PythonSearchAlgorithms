@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
     QSplitter
 
+from Main.model.search.searcher.search_log import SearchLog
 from Main.model.searchproblem.search_problem import SearchProblem
 from Main.observer_pattern.event.event import Event
 from Main.observer_pattern.event.event_type import EventType
@@ -18,7 +19,7 @@ WINDOW_WIDTH = 1100
 LEFT_PANE_WIDTH = int(WINDOW_WIDTH * 0.6)
 RIGHT_PANE_WIDTH = WINDOW_WIDTH - LEFT_PANE_WIDTH
 
-SLIDER_SPEED_RANGE = (0,100)
+SLIDER_SPEED_RANGE = (1, 500)
 
 class SearchWindow(QMainWindow):
     def __init__(self, publisher, state):
@@ -39,6 +40,7 @@ class SearchWindow(QMainWindow):
         self.horizontal_splitter = QSplitter()
         self.createLeftPane(state)
         self.createRightPane()
+        self.grid.set_speed_slider(self.speedSlider)
         self.horizontal_splitter.setSizes([LEFT_PANE_WIDTH, RIGHT_PANE_WIDTH])
 
         self.generalLayout.addWidget(self.horizontal_splitter)
@@ -113,12 +115,19 @@ class SearchWindow(QMainWindow):
             self.leftPane.removeWidget(self.grid)
             self.grid.deleteLater()
             self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher, self.toggledRadioButton)
+            self.grid.set_speed_slider(self.speedSlider)
             self.leftPane.insertWidget(0, self.grid)
         elif event.type == EventType.RadioToggled:
             self.toggledRadioButton = event.data
 
     def get_grid_representation(self):
         return self.grid.get_grid()
+
+    def unlock_grid(self):
+        self.grid.unlock()
+
+    def render_search(self, log: SearchLog):
+        self.grid.render_search(log)
 
 
 
