@@ -97,7 +97,7 @@ class SearchWindow(QMainWindow):
         self.rightPane.addWidget(self.optionsPane)
 
     def createStatisticsPane(self):
-        self.statisticsPane = StatisticsPane()
+        self.statisticsPane = StatisticsPane(self.publisher)
         self.rightPane.addWidget(self.statisticsPane)
 
     def update_problem(self, problem: SearchProblem):

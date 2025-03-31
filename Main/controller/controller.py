@@ -16,7 +16,9 @@ class Controller(Subscriber):
     def update_subscriber(self, event: Event):
         self.event_map[event.get_type()](event)
 
+
     def startAlgorithm(self, event: Event):
+        """ Fetches the view's grid, converts it to the model's expected problem, and conducts a search """
         grid_representation = self.view.get_grid_representation()
         grid_problem_grid = parse_view_grid(grid_representation)
         if not self.model.is_valid_problem(grid_problem_grid):
@@ -27,8 +29,6 @@ class Controller(Subscriber):
         search_log = searcher.logged_search(self.model.get_problem())
         self.view.render_search(search_log)
 
-
-        self.view.unlock_grid()
         
 
 

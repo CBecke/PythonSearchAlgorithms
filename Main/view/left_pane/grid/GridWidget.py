@@ -7,9 +7,8 @@ from Main.model.searchproblem.grid_problem import GridProblem
 from Main.model.searchproblem.position_type import PositionType
 from Main.observer_pattern.event.event import Event
 from Main.observer_pattern.event.event_type import EventType
+from Main.observer_pattern.event.searchConcludedEvent import SearchConcludedEvent
 from Main.view.left_pane.grid.label.impl.emptySquare import EmptySquare
-from Main.view.left_pane.grid.label.impl.expandedSquare import ExpandedSquare
-from Main.view.left_pane.grid.label.impl.generatedSquare import GeneratedSquare
 from Main.view.left_pane.grid.label.squareFactory import SquareFactory
 
 
@@ -35,7 +34,6 @@ class GridWidget(QWidget):
         self.createGridLayout(rows, cols)
         self.publisher.subscribe(EventType.RadioToggled, self)
         self.publisher.subscribe(EventType.ResetPressed, self)
-        self.publisher.subscribe(EventType.StartPressed, self)
 
     def createGridLayout(self, nRows, nCols):
         self.layout = QGridLayout()
@@ -60,8 +58,6 @@ class GridWidget(QWidget):
                 for col in range(len(self.grid[row])):
                     if not isinstance(self.grid[row][col], EmptySquare):
                         self.updateSquare(row, col, "empty")
-        elif event.get_type() == EventType.StartPressed:
-            self.grid_locked = True
 
 
     def mouseMoveEvent(self, event: QMouseEvent):
@@ -107,7 +103,7 @@ class GridWidget(QWidget):
     def unlock(self):
         self.grid_locked = False
 
-    def render_search(self, log):
+    def render_search(self, log: SearchLog):
         self.grid_locked = True
 
         if self.search_thread and self.search_thread.isRunning():
@@ -122,6 +118,8 @@ class GridWidget(QWidget):
 
         self.search_thread.finished.connect(self.render_finished) # TODO: make it update the generated nodes GUI field
         self.search_thread.start()
+        event = SearchConcludedEvent(log.n_generated())
+        self.publisher.notify(event.get_type(), event)
 
     def update_thread_speed(self, value):
         if self.search_thread and self.search_thread.isRunning():
@@ -171,6 +169,8 @@ class SearchRendererThread(QThread):
             self.render_step.emit(row, col, "expanded")
 
             self.msleep(self.sleep_duration)
+
+
         self.finished.emit()
 
     def stop(self):

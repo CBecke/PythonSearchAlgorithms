@@ -160,3 +160,4 @@ cython_debug/
 .idea/*
 *.pyc
 *.xml
+.idea/workspace.xml
