@@ -27,6 +27,7 @@ class SpeedSliderPane(QWidget):
     def emit_speed(self, value):
         self.speed_changed.emit(value)
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = SpeedSliderPane(minValue = 0, maxValue = 100)

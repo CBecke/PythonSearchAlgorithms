@@ -112,8 +112,6 @@ class GridWidget(QWidget):
 
         self.search_thread = SearchRendererThread(log, self.speedSlider)
         self.search_thread.render_step.connect(self.handle_render_step)
-
-        self.search_thread.sleep_duration = self.speedSlider.slider.value()
         self.speedSlider.speed_changed.connect(self.search_thread.update_speed)
 
         self.search_thread.finished.connect(self.render_finished) # TODO: make it update the generated nodes GUI field
@@ -150,10 +148,11 @@ class SearchRendererThread(QThread):
         super().__init__()
         self.log = log
         self.running = True
-        self.sleep_duration = 500
         self.speedSlider = speedSlider
+        self.update_speed(self.speedSlider.slider.value())
 
     def run(self):
+        print("run 157")
         for node_generated, node_expanded in self.log:
             if not self.running:
                 break
@@ -180,7 +179,6 @@ class SearchRendererThread(QThread):
         min_val = self.speedSlider.minimum
         max_val = self.speedSlider.maximum
         self.sleep_duration = max(min_val, max_val - value + min_val)
-
 
 
 
