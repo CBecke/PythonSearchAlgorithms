@@ -6,4 +6,5 @@ class EventType(Enum):
     RadioToggled = auto(),
     ResetPressed = auto(),
     StartPressed = auto(),
+    SearchConcluded = auto(),
 

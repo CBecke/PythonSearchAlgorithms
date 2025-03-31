@@ -42,6 +42,15 @@ class Queue(Frontier):
             yield current
             current = current.next
 
+    def __len__(self):
+        length = 0
+        current = self.head
+        while current:
+            length += 1
+            current = current.next
+
+        return length
+
 
 
 

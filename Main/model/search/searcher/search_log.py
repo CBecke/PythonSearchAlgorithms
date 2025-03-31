@@ -20,6 +20,18 @@ class SearchLog:
         for node_generated, node_expanded in zip(self.generated, self.expanded):
             yield node_generated, node_expanded
 
+    def n_expanded(self):
+        return len(self.expanded)
+
+    def n_generated(self):
+        count = 0
+        current = self.generated.head
+        while current is not None:
+            count += len(current.value)
+            current = current.next
+
+        return count
+
 
 
 

@@ -27,8 +27,6 @@ class Controller(Subscriber):
         search_log = searcher.logged_search(self.model.get_problem())
         self.view.render_search(search_log)
 
-
-        self.view.unlock_grid()
         
 
 

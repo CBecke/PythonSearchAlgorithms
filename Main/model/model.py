@@ -1,3 +1,4 @@
+from Main.model.searchproblem.position_type import PositionType
 from Main.model.searchproblem.search_problem import SearchProblem
 
 
@@ -9,6 +10,13 @@ class Model:
         return self.problem
 
     def is_valid_problem(self, grid_problem_grid):
-        # TODO: complete. Should actually probably be a static method in search_problem (and then implemented in grid_problem)
-        # problem should have exactly one agent and at least one goal
-        return True
+        agent_count = 0
+        goal_count = 0
+        for row in range(len(grid_problem_grid)):
+            for col in range(len(grid_problem_grid[row])):
+                if grid_problem_grid[row][col] == PositionType.INITIAL.value:
+                    agent_count += 1
+                elif grid_problem_grid[row][col] == PositionType.GOAL.value:
+                    goal_count += 1
+
+        return agent_count == 1 and goal_count >= 1
