@@ -74,12 +74,13 @@ class GridWidget(QWidget):
         col, row = self.getSquareIndices(event)
         # only allow a single agent on the grid
         currentSquare = self.grid[row][col]
-        if self.currentToggledSquare == "agent" and self.currentAgentPos is not None:
-            # turn old agent square into an empty square
-            prevAgentX, prevAgentY = self.currentAgentPos
-            self.updateSquare(prevAgentX, prevAgentY, "empty")
+        if self.currentToggledSquare == "agent":
+            if self.currentAgentPos is not None:
+                # turn old agent square into an empty square
+                prevAgentX, prevAgentY = self.currentAgentPos
+                self.updateSquare(prevAgentX, prevAgentY, "empty")
+            self.currentAgentPos = (row, col)
 
-        self.currentAgentPos = (row, col)
         self.updateSquare(row, col, self.currentToggledSquare)
 
 
@@ -114,7 +115,7 @@ class GridWidget(QWidget):
         self.search_thread.render_step.connect(self.handle_render_step)
         self.speedSlider.speed_changed.connect(self.search_thread.update_speed)
 
-        self.search_thread.finished.connect(self.render_finished) # TODO: make it update the generated nodes GUI field
+        self.search_thread.finished.connect(self.render_finished)
         self.search_thread.start()
         event = SearchConcludedEvent(log.n_generated())
         self.publisher.notify(event.get_type(), event)

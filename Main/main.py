@@ -13,7 +13,7 @@ from Main.view.search_window import SearchWindow
 
 def main():
 
-    grid_length = 40
+    grid_length = 5
     state = [[PositionType.EMPTY for _ in range(grid_length)] for _ in range(grid_length)]
     problem = GridProblem(state)
 
