@@ -8,7 +8,9 @@ from Main.model.searchproblem.position_type import PositionType
 from Main.observer_pattern.event.event import Event
 from Main.observer_pattern.event.event_type import EventType
 from Main.observer_pattern.event.searchConcludedEvent import SearchConcludedEvent
+from Main.view.left_pane.grid.label.impl.agentSquare import AgentSquare
 from Main.view.left_pane.grid.label.impl.emptySquare import EmptySquare
+from Main.view.left_pane.grid.label.impl.goalSquare import GoalSquare
 from Main.view.left_pane.grid.label.squareFactory import SquareFactory
 
 
@@ -125,7 +127,9 @@ class GridWidget(QWidget):
             self.search_thread.update_speed(value)
 
     def handle_render_step(self, row, col, render_type_str):
-        self.updateSquare(row, col, render_type_str)
+        square = self.grid[row][col]
+        if not isinstance(square, AgentSquare) and not isinstance(square, GoalSquare):
+            self.updateSquare(row, col, render_type_str)
 
     def render_finished(self):
         self.unlock()
@@ -153,7 +157,6 @@ class SearchRendererThread(QThread):
         self.update_speed(self.speedSlider.slider.value())
 
     def run(self):
-        print("run 157")
         for node_generated, node_expanded in self.log:
             if not self.running:
                 break
