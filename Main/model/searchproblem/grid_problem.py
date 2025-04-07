@@ -5,6 +5,8 @@ from Main.model.searchproblem.search_problem import SearchProblem
 
 from enum import Enum, auto
 
+from Main.communication.event.state_update_event import StateUpdateEvent
+
 
 # Put here instead of inside GridProblem to avoid writing "GridProblem.[...]" every time
 class Action(Enum):
@@ -21,10 +23,11 @@ class GridProblem(SearchProblem):
     1st (top) row and 2nd column from the left.
     """
 
-    def __init__(self, grid):
+    def __init__(self, grid, publisher):
         self.grid = grid
         self.initial_state = self.find_initial_state()
         self.goal_states = self.find_goal_states()
+        self.publisher = publisher
 
         self.action_mapping = {
             Action.UP: lambda state: Position(state.row - 1, state.column),
@@ -99,6 +102,11 @@ class GridProblem(SearchProblem):
 
         self.initial_state = self.find_initial_state()
         self.goal_states = self.find_goal_states()
+
+        event = StateUpdateEvent(self)
+        self.publisher.notify(event.get_type(), event)
         return self.grid
 
+    def to_array(self):
+        return self.grid
 

@@ -3,8 +3,8 @@ from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
 
 from Main.model.search.searcher.search_log import SearchLog
 from Main.model.searchproblem.search_problem import SearchProblem
-from Main.observer_pattern.event.event import Event
-from Main.observer_pattern.event.event_type import EventType
+from Main.communication.event.event import Event
+from Main.communication.event.event_type import EventType
 from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
 from Main.view.left_pane.grid.GridWidget import GridWidget
 from Main.view.right_pane.AlgorithmDescriptionPane import AlgorithmDescriptionPane
@@ -128,6 +128,9 @@ class SearchWindow(QMainWindow):
 
     def render_search(self, log: SearchLog):
         self.grid.render_search(log)
+
+    def update_color_map(self, problem):
+        self.grid.update_color_map(problem)
 
 
 

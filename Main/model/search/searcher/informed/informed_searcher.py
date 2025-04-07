@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 from Main.model.search.data_structure.node import Node
-from Main.model.search.searcher.AlgorithmDescription import AlgorithmDescription
+from Main.model.search.searcher.algorithm_description import AlgorithmDescription
 from Main.model.search.searcher.logged_searcher import LoggedSearcher
 from Main.model.search.searcher.search_log import SearchLog
 from Main.model.searchproblem.position import Position
@@ -33,19 +33,22 @@ class InformedSearcher(LoggedSearcher, AlgorithmDescription, ABC):
 
             generated = set()
             for child in self.expand(problem, state_node):
-                s = child.state
-                if s not in reached or child.path_cost < reached[s]:
+                position = child.state
+                if self.should_generate(child, reached, position):
                     generated.add(child)
-                    reached[s] = child.path_cost
+                    reached[position] = child.path_cost
                     frontier.add(child)
 
             log.add_generated(generated)
-        return SearchLog() # return an empty log if the search fails
+        return log # returns the log even whe the search fails (in which case the tail of log.expanded is not a goal)
+
+    def should_generate(self, child, reached, position):
+        return position not in reached or child.path_cost < reached[position]
 
     @staticmethod
-    def expand(problem: SearchProblem, node: SearchNode):
-        s = node.state
+    def expand(problem: SearchProblem, parent: SearchNode):
+        s = parent.state
         for action in problem.actions(s):
             resulting_state = problem.result(s, action)
-            cost = node.path_cost + problem.action_cost(s, action)
-            yield SearchNode(resulting_state, node, action, cost)
+            cost = parent.path_cost + problem.action_cost(s, action)
+            yield SearchNode(resulting_state, parent, action, cost)

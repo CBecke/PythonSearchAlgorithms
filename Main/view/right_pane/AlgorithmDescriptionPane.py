@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication
 
-from Main.model.search.searcher.informed.best_first_Searcher import BestFirstSearcher
+from Main.model.search.searcher.informed.best_first_searcher import BestFirstSearcher
 
 
 class AlgorithmDescriptionPane(QWidget):

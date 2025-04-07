@@ -7,4 +7,6 @@ class EventType(Enum):
     ResetPressed = auto(),
     StartPressed = auto(),
     SearchConcluded = auto(),
+    StateUpdate = auto(),
+    ClearGridPressed = auto(),
 

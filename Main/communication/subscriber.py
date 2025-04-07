@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from Main.observer_pattern.event.event import Event
+from Main.communication.event.event import Event
 
 
 class Subscriber(ABC):

@@ -1,5 +1,5 @@
-from Main.observer_pattern.event.event import Event
-from Main.observer_pattern.event.event import EventType
+from Main.communication.event.event import Event
+from Main.communication.event.event import EventType
 
 
 class DimensionApplyPressedEvent(Event):

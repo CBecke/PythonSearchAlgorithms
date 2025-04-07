@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QPushButton
 
-from Main.observer_pattern.event.StartPressedEvent import StartPressedEvent
+from Main.communication.event.StartPressedEvent import StartPressedEvent
+from Main.communication.event.clear_event import ClearGridEvent
 
 
 class OptionsPane(QWidget):
@@ -12,15 +13,18 @@ class OptionsPane(QWidget):
         self.setLayout(self.layout)
 
         self.startBtn = QPushButton('Start')
-        self.stopBtn = QPushButton('Stop')
-        self.saveBtn = QPushButton('Save')
+        self.clearBtn = QPushButton('Clear Search')
 
         self.layout.addWidget(self.startBtn)
-        self.layout.addWidget(self.stopBtn)
-        self.layout.addWidget(self.saveBtn)
+        self.layout.addWidget(self.clearBtn)
 
         self.startBtn.clicked.connect(self.startAction)
+        self.clearBtn.clicked.connect(self.clearAction)
 
     def startAction(self):
         event = StartPressedEvent()
+        self.publisher.notify(event.get_type(), event)
+
+    def clearAction(self):
+        event = ClearGridEvent()
         self.publisher.notify(event.get_type(), event)

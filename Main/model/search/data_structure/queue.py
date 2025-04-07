@@ -1,3 +1,5 @@
+from decimal import InvalidOperation
+
 from Main.model.search.data_structure.frontier import Frontier
 from Main.model.search.data_structure.node import Node
 
@@ -10,9 +12,9 @@ class Queue(Frontier):
     def is_empty(self):
         return self.head is None
 
-    def pop(self):
+    def pop(self) -> Node:
         if self.is_empty():
-            return None
+            raise InvalidOperation("Queue is empty")
 
         popped_node = self.head
         self.head = self.head.next

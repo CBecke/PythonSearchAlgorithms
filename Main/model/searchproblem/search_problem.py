@@ -49,3 +49,6 @@ class SearchProblem(ABC):
     @abstractmethod
     def get_state(self):
         pass
+
+    def to_array(self):
+        pass

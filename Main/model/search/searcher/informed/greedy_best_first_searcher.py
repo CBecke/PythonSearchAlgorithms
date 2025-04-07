@@ -1,10 +1,11 @@
+from Main.model.search.searcher.informed.best_first_searcher import BestFirstSearcher
 from Main.model.searchproblem.search_node import SearchNode
 from Main.model.search.searcher.informed.informed_searcher import InformedSearcher
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem
 
 
-class BestFirstSearcher(InformedSearcher):
+class GreedyBestFirstSearcher(BestFirstSearcher):
 
     def f(self, problem: SearchProblem, current: SearchNode):
         minimum_manhattan_dist = 1000000
@@ -14,16 +15,17 @@ class BestFirstSearcher(InformedSearcher):
             if current_manhattan_dist < minimum_manhattan_dist:
                 minimum_manhattan_dist = current_manhattan_dist
 
-        assert minimum_manhattan_dist != 1000000, "No goals in problem"
         assert minimum_manhattan_dist >= 0, "incorrect manhattan distance"
         return minimum_manhattan_dist
 
 
-
     @staticmethod
     def get_name():
-        return "Best-First Search"
+        return "Greedy Best-First Search"
 
     @staticmethod
     def get_description():
-        return "Best-first search is an informed search algorithm which, which greedily expanding the generated node with minimum value of the evaluation function f(n). In this case, f(n) is Manhattan distance from n to the nearest goal."
+        return "Greedy Best-first search is an informed search algorithm. It expands generated nodes based on an evaluation function f(n). The generated node n with the lowest f(n) value is expanded next. In this implementation, f(n) is the wall-agnostic Manhattan distance from n to the nearest goal. "
+
+    def should_generate(self, child, reached, position):
+        return position not in reached

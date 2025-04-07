@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-from Main.observer_pattern.event.event_type import EventType
+from Main.communication.event.event_type import EventType
 
 
 class Event(ABC):

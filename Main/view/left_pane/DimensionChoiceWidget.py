@@ -2,9 +2,9 @@ import sys
 
 from PyQt6.QtWidgets import QWidget, QLabel, QHBoxLayout, QApplication, QLineEdit, QPushButton
 
-from Main.observer_pattern.event.dimension_apply_pressed import DimensionApplyPressedEvent
-from Main.observer_pattern.publisher import Publisher
-from Main.observer_pattern.event.event_type import EventType as ET
+from Main.communication.event.dimension_apply_pressed import DimensionApplyPressedEvent
+from Main.communication.publisher import Publisher
+from Main.communication.event.event_type import EventType as ET
 
 
 class DimensionChoiceWidget(QWidget):
