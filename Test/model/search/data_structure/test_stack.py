@@ -1,5 +1,5 @@
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.data_structure.stack import Stack
+from Main.model.data_structure.stack import Stack
 
 
 def test_empty_stack():

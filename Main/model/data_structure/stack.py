@@ -1,4 +1,4 @@
-from Main.model.search.data_structure.frontier import Frontier
+from Main.model.data_structure.frontier import Frontier
 from Main.model.searchproblem.search_node import SearchNode
 
 

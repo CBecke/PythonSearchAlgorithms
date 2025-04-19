@@ -1,4 +1,3 @@
-from Main.model.search.searcher.informed.best_first_searcher import BestFirstSearcher
 from Main.model.view_grid_parsing import parse_view_grid
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
@@ -30,7 +29,7 @@ class Controller(Subscriber):
             return
 
         self.model.get_problem().update_state(grid_problem_grid)
-        searcher = BestFirstSearcher()
+        searcher = self.view.get_searcher()
         search_log = searcher.logged_search(self.model.get_problem())
         self.view.render_search(search_log)
 

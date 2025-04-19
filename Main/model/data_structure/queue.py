@@ -1,7 +1,7 @@
 from decimal import InvalidOperation
 
-from Main.model.search.data_structure.frontier import Frontier
-from Main.model.search.data_structure.node import Node
+from Main.model.data_structure.frontier import Frontier
+from Main.model.data_structure.node import Node
 
 
 class Queue(Frontier):
@@ -37,6 +37,10 @@ class Queue(Frontier):
         self.tail.next = node
         self.tail = node
         return self.tail
+
+    def clear(self):
+        self.head = None
+        self.tail = None
 
     def __iter__(self):
         current = self.head

@@ -1,6 +1,6 @@
 
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.data_structure.queue import Queue
+from Main.model.data_structure import Queue
 
 
 def test_empty_queue():
