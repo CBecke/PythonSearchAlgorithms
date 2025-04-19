@@ -4,10 +4,10 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtGui import QMouseEvent
 from PyQt6.QtWidgets import QWidget, QGridLayout, QApplication
 
-from Main.model.search.data_structure.node import Node
-from Main.model.search.data_structure.queue import Queue
-from Main.model.search.searcher.informed.best_first_searcher import BestFirstSearcher
-from Main.model.search.searcher.search_log import SearchLog
+from Main.model.data_structure.node import Node
+from Main.model.data_structure.queue import Queue
+from Main.model.searcher.informed.best_first_searcher import BestFirstSearcher
+from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem import grid_problem
 from Main.model.searchproblem.grid_problem import GridProblem
 from Main.model.searchproblem.position import Position
@@ -76,7 +76,12 @@ class GridWidget(QWidget):
                 for col in range(len(self.grid[row])):
                     if not isinstance(self.grid[row][col], EmptySquare):
                         self.updateSquare(row, col, "empty")
+
         elif event.get_type() == EventType.ClearGridPressed:
+            if self.search_thread and self.search_thread.isRunning():
+                self.search_thread.stop()
+                self.search_thread.wait()
+
             self.clear_search_squares()
 
 
@@ -267,16 +272,15 @@ class SearchRendererThread(QThread):
             if not self.running:
                 break
 
+            position = node_expanded.value.state
+            row, col = position.row, position.column
+            self.render_step.emit(row, col, "expanded")
+
             # node_generated is a Node whose value is a set of SearchNode
             for search_node in node_generated.value:
                 position = search_node.state
                 row, col = position.row, position.column
                 self.render_step.emit(row, col, "generated")
-
-
-            position = node_expanded.value.state
-            row, col = position.row, position.column
-            self.render_step.emit(row, col, "expanded")
 
             self.msleep(self.sleep_duration)
 

@@ -1,12 +1,11 @@
 from abc import abstractmethod, ABC
 
-from Main.model.search.data_structure.node import Node
-from Main.model.search.searcher.algorithm_description import AlgorithmDescription
-from Main.model.search.searcher.logged_searcher import LoggedSearcher
-from Main.model.search.searcher.search_log import SearchLog
-from Main.model.searchproblem.position import Position
+from Main.model.data_structure.node import Node
+from Main.model.searcher.algorithm_description import AlgorithmDescription
+from Main.model.searcher.logged_searcher import LoggedSearcher
+from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.data_structure.priority_queue import PriorityQueue
+from Main.model.data_structure.priority_queue import PriorityQueue
 from Main.model.searchproblem.search_problem import SearchProblem
 
 

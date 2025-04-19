@@ -1,5 +1,5 @@
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.data_structure.priority_queue import PriorityQueue
+from Main.model.data_structure.priority_queue import PriorityQueue
 from Main.model.searchproblem.search_problem import SearchProblem
 
 [one, two, three, four, five, six, seven, nine, ten, fourteen] = [SearchNode(None, None, None, None) for i in range(10)]

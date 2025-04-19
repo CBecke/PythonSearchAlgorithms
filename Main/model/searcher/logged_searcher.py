@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from Main.model.search.searcher.search_log import SearchLog
+from Main.model.searcher.search_log import SearchLog
 
 
 class LoggedSearcher:

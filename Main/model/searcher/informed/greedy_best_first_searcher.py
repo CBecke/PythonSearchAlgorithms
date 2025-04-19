@@ -1,6 +1,5 @@
-from Main.model.search.searcher.informed.best_first_searcher import BestFirstSearcher
+from Main.model.searcher.informed.best_first_searcher import BestFirstSearcher
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.searcher.informed.informed_searcher import InformedSearcher
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem
 
@@ -21,11 +20,11 @@ class GreedyBestFirstSearcher(BestFirstSearcher):
 
     @staticmethod
     def get_name():
-        return "Greedy Best-First Search"
+        return "Greedy Best-First"
 
     @staticmethod
     def get_description():
-        return "Greedy Best-first search is an informed search algorithm. It expands generated nodes based on an evaluation function f(n). The generated node n with the lowest f(n) value is expanded next. In this implementation, f(n) is the wall-agnostic Manhattan distance from n to the nearest goal. "
+        return "Greedy Best-first search is an informed search algorithm. It greedily expands generated nodes based on a heuristic function h(n). The generated node n with the perceived shortest goal distance according to h(n) is expanded first. In this implementation, f(n) is the wall-agnostic Manhattan distance from n to the nearest goal."
 
     def should_generate(self, child, reached, position):
         return position not in reached

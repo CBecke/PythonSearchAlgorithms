@@ -19,3 +19,7 @@ class Frontier:
     @abstractmethod
     def add(self, node: SearchNode):
         pass
+
+    @abstractmethod
+    def clear(self):
+        pass

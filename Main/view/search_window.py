@@ -1,14 +1,13 @@
 from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
     QSplitter
 
-from Main.model.search.searcher.search_log import SearchLog
+from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem.search_problem import SearchProblem
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
 from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
 from Main.view.left_pane.grid.GridWidget import GridWidget
-from Main.view.right_pane.AlgorithmDescriptionPane import AlgorithmDescriptionPane
-from Main.view.right_pane.AlgorithmDropdownPane import AlgorithmDropdownPane
+from Main.view.right_pane.AlgorithmDropdownDescriptionPane import AlgorithmDropdownDescriptionPane
 from Main.view.right_pane.DrawChoicePane import DrawChoicePane
 from Main.view.right_pane.OptionsPane import OptionsPane
 from Main.view.right_pane.SpeedSliderPane import SpeedSliderPane
@@ -68,8 +67,7 @@ class SearchWindow(QMainWindow):
         self.rightPane = QVBoxLayout(rightPaneWidget)
 
         self.createDrawChoicePane()
-        self.createAlgorithmDropdownPane()
-        self.createAlgorithmDescriptionPane()
+        self.createAlgorithmDropdownDescriptionPane()
         self.createSpeedSliderPane()
         self.createOptionsPane()
         self.createStatisticsPane()
@@ -80,13 +78,9 @@ class SearchWindow(QMainWindow):
         self.drawChoicePane = DrawChoicePane(self.publisher)
         self.rightPane.addWidget(self.drawChoicePane)
 
-    def createAlgorithmDropdownPane(self):
-        self.algorithmDropdown = AlgorithmDropdownPane()
+    def createAlgorithmDropdownDescriptionPane(self):
+        self.algorithmDropdown = AlgorithmDropdownDescriptionPane()
         self.rightPane.addWidget(self.algorithmDropdown)
-
-    def createAlgorithmDescriptionPane(self):
-        self.algorithmDescription = AlgorithmDescriptionPane()
-        self.rightPane.addWidget(self.algorithmDescription)
 
     def createSpeedSliderPane(self):
         self.speedSlider = SpeedSliderPane(SLIDER_SPEED_RANGE[0], SLIDER_SPEED_RANGE[1])
@@ -110,8 +104,8 @@ class SearchWindow(QMainWindow):
 
     def update_subscriber(self, event: Event):
         if event.type == EventType.DimensionApplyPressed:
-            gridSize = event.data
-            dimensionedGrid = [[0 for j in range(gridSize)] for i in range(gridSize)]
+            grid_size = event.data
+            dimensionedGrid = [[0 for j in range(grid_size)] for i in range(grid_size)]
             self.leftPane.removeWidget(self.grid)
             self.grid.deleteLater()
             self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher, self.toggledRadioButton)
@@ -131,6 +125,9 @@ class SearchWindow(QMainWindow):
 
     def update_color_map(self, problem):
         self.grid.update_color_map(problem)
+
+    def get_searcher(self):
+        return self.algorithmDropdown.get_toggled()
 
 
 

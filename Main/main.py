@@ -14,7 +14,7 @@ from Main.view.search_window import SearchWindow
 def main():
     publisher = Publisher()
 
-    grid_length = 5
+    grid_length = 3
     state = [[PositionType.EMPTY for _ in range(grid_length)] for _ in range(grid_length)]
     problem = GridProblem(state, publisher)
 

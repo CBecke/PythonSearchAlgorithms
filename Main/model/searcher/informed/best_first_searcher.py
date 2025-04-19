@@ -1,5 +1,5 @@
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.search.searcher.informed.informed_searcher import InformedSearcher
+from Main.model.searcher.informed.informed_searcher import InformedSearcher
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem
 
@@ -20,7 +20,7 @@ class BestFirstSearcher(InformedSearcher):
 
     @staticmethod
     def get_name():
-        return "Best-First Search"
+        return "Best-First"
 
     @staticmethod
     def get_description():

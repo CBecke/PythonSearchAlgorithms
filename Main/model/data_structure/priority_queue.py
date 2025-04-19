@@ -5,7 +5,7 @@ to implement skew heaps but only realized afterward how slow its decrease-key op
 a standard, dynamic array-based binary min-heap. It should be extra simple since python lists are dynamic arrays.
 The implementation will be based on CLRS
 """
-from Main.model.search.data_structure.frontier import Frontier
+from Main.model.data_structure.frontier import Frontier
 from Main.model.searchproblem.search_node import SearchNode
 
 
