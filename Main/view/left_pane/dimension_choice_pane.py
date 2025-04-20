@@ -38,7 +38,7 @@ class DimensionChoicePane(QWidget):
 
     def update_dimensions(self):
         self.publish_problem_dimensions()
-        self.dimensionChoice.clear()
+        self.dimensionChoice.setText("")
         self.unfocus_lineedit()
 
     def unfocus_lineedit(self):

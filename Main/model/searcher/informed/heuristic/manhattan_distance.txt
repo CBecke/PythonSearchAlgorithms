@@ -2,13 +2,14 @@ from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_node import SearchNode
 from Main.model.searchproblem.search_problem import SearchProblem
 
+# SearchNode.state is a Position, which has the attributes Position.row and Position.column
 def h(problem: SearchProblem, current: SearchNode) -> float | int:
-    minimum_manhattan_dist = 1000000
+    min_dist = 1000000
 
     for goal in problem.find_goal_states():
-        current_manhattan_dist = Position.manhattan_distance(current.state, goal)
-        if current_manhattan_dist < minimum_manhattan_dist:
-            minimum_manhattan_dist = current_manhattan_dist
+        current_dist = Position.manhattan_distance(current.state, goal)
+        if current_dist < min_dist:
+            min_dist = current_dist
 
-    assert minimum_manhattan_dist >= 0, "incorrect manhattan distance"
-    return minimum_manhattan_dist
+    assert min_dist >= 0, "incorrect manhattan distance"
+    return min_dist

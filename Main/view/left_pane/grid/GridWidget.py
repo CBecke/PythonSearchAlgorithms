@@ -111,9 +111,12 @@ class GridWidget(QWidget):
 
 
     def update_square(self, row, col, type_to: str):
+        print(f"Updating square at ({row}, {col}) to {type_to}")
         old_widget = self.grid[row][col]
-        self.layout.removeWidget(old_widget)
-        old_widget.deleteLater()
+        if old_widget:
+            print(f"Removing old widget: {old_widget}")
+            self.layout.removeWidget(old_widget)
+            old_widget.deleteLater()
 
         if type_to == "expanded":
             new_widget = ExpandedSquare(self.squareLength, self.distance_color_grid[row][col])
@@ -280,7 +283,6 @@ class SearchRendererThread(QThread):
                 self.render_step.emit(row, col, "generated")
 
             self.msleep(self.sleep_duration)
-
 
         self.finished.emit()
 
