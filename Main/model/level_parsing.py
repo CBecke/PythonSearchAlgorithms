@@ -1,3 +1,4 @@
+import os
 
 from Main.model.searchproblem.position_type import PositionType
 
@@ -16,6 +17,7 @@ def parse_rectangle(level):
 
     }
 
+    print("\n\n___" + os.getcwd() + "___\n\n")
     with open(level, 'r') as file:
         parsed_level = []
         lines = file.readlines()[1:-1]   # skip walls; they are redundant

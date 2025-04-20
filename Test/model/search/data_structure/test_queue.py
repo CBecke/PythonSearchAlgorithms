@@ -1,6 +1,6 @@
 
 from Main.model.searchproblem.search_node import SearchNode
-from Main.model.data_structure import Queue
+from Main.model.data_structure.queue import Queue
 
 
 def test_empty_queue():
@@ -24,7 +24,7 @@ def test_top_queue():
 
 def test_pop_queue():
     queue = Queue()
-    assert queue.pop() is None
+    assert queue.is_empty()
 
     node = SearchNode(5, None, None, None)
     queue.add(node)

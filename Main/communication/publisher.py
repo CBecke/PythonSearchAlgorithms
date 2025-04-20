@@ -1,10 +1,8 @@
-from abc import ABC, abstractmethod
 
 from Main.communication.event.event import Event
-from Main.communication.event.event_type import EventType
 
 
-class Publisher():
+class Publisher:
     def __init__(self, listeners=None):
         # listeners is a hashmap from event_type to a set of subscribers
         self.listeners = listeners if listeners is not None else dict()
@@ -14,11 +12,8 @@ class Publisher():
             self.listeners[event_type] = set()
         self.listeners[event_type].add(subscriber)
 
-    def unsubscribe(self, event_type, subscriber):
-        self.listeners[event_type].remove(subscriber)
-    # TODO: since we embed the EventType in the event, we can remove this first EventType parameter, and just extract it from the event?
-    def notify(self, event_type: EventType, event: Event):
-        for listener in self.listeners[event_type]:
+    def notify(self, event: Event):
+        for listener in self.listeners[event.get_type()]:
             listener.update_subscriber(event)
 
 

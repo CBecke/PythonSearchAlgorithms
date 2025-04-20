@@ -1,4 +1,4 @@
-from Main.model.searcher.informed.best_first_searcher import BestFirstSearcher
+from Main.model.searcher.informed.impl.best_first_searcher import BestFirstSearcher
 from Main.model.searchproblem.search_node import SearchNode
 from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_problem import SearchProblem

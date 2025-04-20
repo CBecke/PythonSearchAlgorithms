@@ -1,3 +1,4 @@
+from Main.communication.publisher import Publisher
 from Main.model.searchproblem.grid_problem import GridProblem
 from Main.model import level_parsing
 from Main.model.searchproblem import position
@@ -5,7 +6,7 @@ from Main.model.searchproblem import position
 def test_initialization():
     level_path = r"resources/levels/simple_open_3goals.txt"
     parsed_level = level_parsing.parse_rectangle(level_path)
-    gp = GridProblem(parsed_level)
+    gp = GridProblem(parsed_level, Publisher())
 
     goal_states = {position.Position(1, 1),
                    position.Position(0, 2),

@@ -27,3 +27,7 @@ class Stack(Frontier):
             node.next = self.head
         self.head = node
         return self.head
+
+    def clear(self):
+        while not self.is_empty():
+            self.pop()

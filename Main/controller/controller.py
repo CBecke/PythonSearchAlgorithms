@@ -1,10 +1,9 @@
 from Main.model.view_grid_parsing import parse_view_grid
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
-from Main.communication.subscriber import Subscriber
 
 
-class Controller(Subscriber):
+class Controller:
     def __init__(self, model, view, publisher):
         self.model = model
         self.view = view
@@ -18,10 +17,15 @@ class Controller(Subscriber):
         }
 
     def update_subscriber(self, event: Event):
-        self.event_map[event.get_type()](event)
+        if event.get_type() == EventType.StartPressed:
+            self.start_algorithm()
+        elif event.get_type() == EventType.StateUpdate:
+            self.forward_state_update(event)
+        else:
+            raise Exception("Invalid event type")
 
 
-    def start_algorithm(self, event: Event):
+    def start_algorithm(self):
         """ Fetches the view's grid, converts it to the model's expected problem, and conducts a search """
         grid_representation = self.view.get_grid_representation()
         grid_problem_grid = parse_view_grid(grid_representation)

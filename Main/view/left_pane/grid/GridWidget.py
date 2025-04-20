@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QWidget, QGridLayout, QApplication
 
 from Main.model.data_structure.node import Node
 from Main.model.data_structure.queue import Queue
-from Main.model.searcher.informed.best_first_searcher import BestFirstSearcher
+from Main.model.searcher.informed.impl.best_first_searcher import BestFirstSearcher
 from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem import grid_problem
 from Main.model.searchproblem.grid_problem import GridProblem
@@ -15,7 +15,7 @@ from Main.model.searchproblem.position_type import PositionType
 from Main.model.searchproblem.search_problem import SearchProblem
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
-from Main.communication.event.searchConcludedEvent import SearchConcludedEvent
+from Main.communication.event.impl.search_concluded_event import SearchConcludedEvent
 from Main.view.left_pane.grid.label.impl.agentSquare import AgentSquare
 from Main.view.left_pane.grid.label.impl.emptySquare import EmptySquare
 from Main.view.left_pane.grid.label.impl.search_square.expandedSquare import ExpandedSquare
@@ -26,17 +26,21 @@ from Main.view.left_pane.grid.label.squareFactory import SquareFactory
 
 
 class GridWidget(QWidget):
-    def __init__(self, widgetWidth, widgetHeight, state, publisher, currentToggledSquare="agent"):
+    def __init__(self, widget_width, widget_height, state, publisher, current_toggled_square="agent"):
         super().__init__()
         self.publisher = publisher
+        self.publisher.subscribe(EventType.RadioToggled, self)
+        self.publisher.subscribe(EventType.ResetPressed, self)
+        self.publisher.subscribe(EventType.ClearGridPressed, self)
+
         self.speedSlider = None
         rows = len(state)
         cols = len(state[0])
-        self.widgetWidth = widgetWidth
-        self.widgetHeight = widgetHeight
+        self.widgetWidth = widget_width
+        self.widgetHeight = widget_height
         self.squareLength = self.widgetWidth // max(rows, cols)
 
-        self.currentToggledSquare = currentToggledSquare
+        self.currentToggledSquare = current_toggled_square
         self.currentAgentPos = None
         self.grid_locked = False
         self.search_thread = None
@@ -47,20 +51,17 @@ class GridWidget(QWidget):
         self.distance_color_grid = [[None for _ in range(cols)] for _ in range(rows)]
 
         # make a grid layout with no padding between squares
-        self.createGridLayout(rows, cols)
-        self.publisher.subscribe(EventType.RadioToggled, self)
-        self.publisher.subscribe(EventType.ResetPressed, self)
-        self.publisher.subscribe(EventType.ClearGridPressed, self)
+        self.create_grid_layout(rows, cols)
 
-    def createGridLayout(self, nRows, nCols):
+    def create_grid_layout(self, n_rows, n_cols):
         self.layout = QGridLayout()
         self.layout.setSpacing(0)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
 
-        self.grid = [[None for _ in range(nCols)] for _ in range(nRows)]
-        for row in range(nRows):
-            for col in range(nCols):
+        self.grid = [[None for _ in range(n_cols)] for _ in range(n_rows)]
+        for row in range(n_rows):
+            for col in range(n_cols):
                 label = EmptySquare(self.squareLength)
                 self.layout.addWidget(label, row, col)
                 self.grid[row][col] = label
@@ -75,7 +76,7 @@ class GridWidget(QWidget):
             for row in range(len(self.grid)):
                 for col in range(len(self.grid[row])):
                     if not isinstance(self.grid[row][col], EmptySquare):
-                        self.updateSquare(row, col, "empty")
+                        self.update_square(row, col, "empty")
 
         elif event.get_type() == EventType.ClearGridPressed:
             if self.search_thread and self.search_thread.isRunning():
@@ -88,43 +89,40 @@ class GridWidget(QWidget):
     def mouseMoveEvent(self, event: QMouseEvent):
         if self.grid_locked or self.currentToggledSquare == "agent": # only allow one agent; agents are made by clicking and not moved click
             return
-        col, row = self.getSquareIndices(event)
+        col, row = self.get_square_indices(event)
         if not (0 <= row < len(self.grid) and 0 <= col < len(self.grid[row])): # stay within grid
             return
-        self.updateSquare(row, col, self.currentToggledSquare)
+        self.update_square(row, col, self.currentToggledSquare)
 
     def mousePressEvent(self, event: QMouseEvent):
         if self.grid_locked:
             return
-        col, row = self.getSquareIndices(event)
+        col, row = self.get_square_indices(event)
+
         # only allow a single agent on the grid
-        currentSquare = self.grid[row][col]
         if self.currentToggledSquare == "agent":
             if self.currentAgentPos is not None:
                 # turn old agent square into an empty square
-                prevAgentX, prevAgentY = self.currentAgentPos
-                self.updateSquare(prevAgentX, prevAgentY, "empty")
+                prev_agent_x, prev_agent_y = self.currentAgentPos
+                self.update_square(prev_agent_x, prev_agent_y, "empty")
             self.currentAgentPos = (row, col)
 
-        self.updateSquare(row, col, self.currentToggledSquare)
+        self.update_square(row, col, self.currentToggledSquare)
 
 
-    def updateSquare(self, row, col, typeTo: str):
+    def update_square(self, row, col, type_to: str):
         old_widget = self.grid[row][col]
         self.layout.removeWidget(old_widget)
         old_widget.deleteLater()
 
-        if typeTo == "expanded":
-            color = self.distance_color_grid[row][col]
-            if color is None:
-                color = "darkBlue"
+        if type_to == "expanded":
             new_widget = ExpandedSquare(self.squareLength, self.distance_color_grid[row][col])
         else:
-            new_widget = SquareFactory.make(typeTo, self.squareLength)
+            new_widget = SquareFactory.make(type_to, self.squareLength)
         self.layout.addWidget(new_widget, row, col)
         self.grid[row][col] = new_widget
 
-    def getSquareIndices(self, event: QMouseEvent):
+    def get_square_indices(self, event: QMouseEvent):
         x = event.pos().x() // self.squareLength
         y = event.pos().y() // self.squareLength
         return x, y
@@ -150,8 +148,7 @@ class GridWidget(QWidget):
 
         self.search_thread.finished.connect(self.render_finished)
         self.search_thread.start()
-        event = SearchConcludedEvent(log.n_generated())
-        self.publisher.notify(event.get_type(), event)
+        self.publisher.notify(SearchConcludedEvent(log.n_generated()))
 
     def update_thread_speed(self, value):
         if self.search_thread and self.search_thread.isRunning():
@@ -160,7 +157,7 @@ class GridWidget(QWidget):
     def handle_render_step(self, row, col, render_type_str):
         square = self.grid[row][col]
         if not isinstance(square, AgentSquare) and not isinstance(square, GoalSquare):
-            self.updateSquare(row, col, render_type_str)
+            self.update_square(row, col, render_type_str)
 
     def render_finished(self):
         self.unlock()
@@ -171,8 +168,8 @@ class GridWidget(QWidget):
             self.search_thread.wait()
             self.unlock()
 
-    def set_speed_slider(self, speedSlider):
-        self.speedSlider = speedSlider
+    def set_speed_slider(self, speed_slider):
+        self.speedSlider = speed_slider
         self.speedSlider.speed_changed.connect(self.update_thread_speed)
 
     def update_color_map(self, problem: SearchProblem):
@@ -208,7 +205,7 @@ class GridWidget(QWidget):
         problem_grid = problem.to_array()
         assert not isinstance(problem_grid[0][0], Collection), "assumes two-dimensional non-empty search problem"
         # Do BFS to determine distances
-        distance_grid = [[None for col in range(len(problem_grid[row]))] for row in range(len(problem_grid))]
+        distance_grid = [[None for _ in range(len(problem_grid[row]))] for row in range(len(problem_grid))]
         queue = Queue()
         for position in goals:
             distance_grid[position.row][position.column] = 0
@@ -252,7 +249,7 @@ class GridWidget(QWidget):
             for col in range(len(self.grid[row])):
                 current = self.grid[row][col]
                 if isinstance(current, GeneratedSquare) or isinstance(current, ExpandedSquare):
-                    self.updateSquare(row, col, "empty")
+                    self.update_square(row, col, "empty")
 
 
 # multi-threading with the help of ChatGPT
@@ -260,11 +257,11 @@ class SearchRendererThread(QThread):
     render_step = pyqtSignal(int, int, str)
     finished = pyqtSignal()
 
-    def __init__(self, log, speedSlider):
+    def __init__(self, log, speed_slider):
         super().__init__()
         self.log = log
         self.running = True
-        self.speedSlider = speedSlider
+        self.speedSlider = speed_slider
         self.update_speed(self.speedSlider.slider.value())
 
     def run(self):
@@ -294,19 +291,4 @@ class SearchRendererThread(QThread):
         min_val = self.speedSlider.minimum
         max_val = self.speedSlider.maximum
         self.sleep_duration = max(min_val, max_val - value + min_val)
-
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-
-    # Create and show grid
-    grid = [[PositionType.EMPTY for _ in range(10)] for _ in range(10)]
-    problem = GridProblem(grid)
-    window = GridWidget(250, 250, problem.get_state())
-    window.show()
-
-    sys.exit(app.exec())
 

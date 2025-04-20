@@ -1,12 +1,8 @@
-import sys
-
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QApplication, QPushButton, QGridLayout, QRadioButton, \
-    QVBoxLayout
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
 
-from Main.communication.event.ResetPressedEvent import ResetPressedEvent
-from Main.communication.event.event_type import EventType
-from Main.communication.event.radio_toggled_event import RadioToggledEvent
+from Main.communication.event.impl.reset_pressed_event import ResetPressedEvent
+from Main.communication.event.impl.radio_toggled_event import RadioToggledEvent
 from Main.view.right_pane.draw_choice_pane.draw_choice_button import DrawChoiceButton
 
 
@@ -21,9 +17,9 @@ class DrawChoicePane(QWidget):
         self.description.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.layout.addWidget(self.description)
 
-        self.createButtons()
+        self.create_buttons()
 
-    def createButtons(self):
+    def create_buttons(self):
         self.radioAgent = DrawChoiceButton("Agent", Qt.Key.Key_A)
         self.radioWall = DrawChoiceButton("Wall", Qt.Key.Key_W)
         self.radioGoal = DrawChoiceButton("Goal", Qt.Key.Key_G)
@@ -32,35 +28,35 @@ class DrawChoicePane(QWidget):
         self.buttons = [self.radioAgent, self.radioWall, self.radioGoal, self.radioEmpty]
         self.radioAgent.setChecked(True)
 
-        radioLayout = QHBoxLayout()
+        radio_layout = QHBoxLayout()
         for btn in self.buttons:
             btn.toggled.connect(self.onClicked)
-            radioLayout.addWidget(btn)
+            radio_layout.addWidget(btn)
 
-        self.publisher.notify(EventType.RadioToggled, RadioToggledEvent(self.radioAgent.text()))
+        self.publisher.notify(RadioToggledEvent(self.radioAgent.text()))
 
-        outerLayout = QVBoxLayout()
-        resetButton = QPushButton("Clear Grid Completely")
-        resetButton.clicked.connect(self.resetGrid)
+        outer_layout = QVBoxLayout()
+        reset_button = QPushButton("Clear Grid Completely")
+        reset_button.clicked.connect(self.reset_grid)
 
-        outerLayout.addLayout(radioLayout)
-        outerLayout.addSpacing(30)
-        outerLayout.addWidget(resetButton)
+        outer_layout.addLayout(radio_layout)
+        outer_layout.addSpacing(30)
+        outer_layout.addWidget(reset_button)
 
-        self.layout.addLayout(outerLayout)
+        self.layout.addLayout(outer_layout)
 
     def onClicked(self):
         button = self.sender()
         if button.isChecked():
-            self.publisher.notify(EventType.RadioToggled, RadioToggledEvent(button.text()))
+            self.publisher.notify(RadioToggledEvent(button.text()))
 
-    def resetGrid(self):
-        self.publisher.notify(EventType.ResetPressed, ResetPressedEvent())
+    def reset_grid(self):
+        self.publisher.notify(ResetPressedEvent())
 
     def keyPressEvent(self, event):
         for btn in self.buttons:
             if btn.connected_key == event.key():
                 btn.setChecked(True)
-                self.publisher.notify(EventType.RadioToggled, RadioToggledEvent(btn.text()))
+                self.publisher.notify(RadioToggledEvent(btn.text()))
                 break
 

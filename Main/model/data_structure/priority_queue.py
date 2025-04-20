@@ -51,6 +51,10 @@ class PriorityQueue(Frontier):
         self.node_costs[node] = self.f(self.search_problem, node)
         self.heap_decrease_key(self.heap_size()-1, node)
 
+    def clear(self):
+        while not self.is_empty():
+            self.pop()
+
     @staticmethod
     def parent(i):
         return int(i/2)

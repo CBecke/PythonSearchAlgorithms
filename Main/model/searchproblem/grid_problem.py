@@ -5,7 +5,7 @@ from Main.model.searchproblem.search_problem import SearchProblem
 
 from enum import Enum, auto
 
-from Main.communication.event.state_update_event import StateUpdateEvent
+from Main.communication.event.impl.state_update_event import StateUpdateEvent
 
 
 # Put here instead of inside GridProblem to avoid writing "GridProblem.[...]" every time
@@ -90,7 +90,7 @@ class GridProblem(SearchProblem):
         """ accepts either a string which can be parsed into a grid, or an int representing the number of squares per
             axis"""
         if isinstance(representation, int):
-            self.grid = [[PositionType.EMPTY for col in range(representation)] for row in range(representation)]
+            self.grid = [[PositionType.EMPTY for _ in range(representation)] for _ in range(representation)]
         elif isinstance(representation, str):
             self.grid = parse_rectangle(representation)
 
@@ -103,8 +103,7 @@ class GridProblem(SearchProblem):
         self.initial_state = self.find_initial_state()
         self.goal_states = self.find_goal_states()
 
-        event = StateUpdateEvent(self)
-        self.publisher.notify(event.get_type(), event)
+        self.publisher.notify(StateUpdateEvent(self))
         return self.grid
 
     def to_array(self):

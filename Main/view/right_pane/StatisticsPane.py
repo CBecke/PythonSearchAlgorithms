@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QFormLayout, QLineEdit
+from PyQt6.QtWidgets import QWidget, QFormLayout, QLineEdit
 
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType

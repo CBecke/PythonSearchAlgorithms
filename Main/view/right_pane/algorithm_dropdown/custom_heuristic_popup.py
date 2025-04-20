@@ -1,8 +1,7 @@
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout
 
-from Main.communication.event.event_type import EventType
-from Main.communication.event.heuristic_update_event import HeuristicUpdateEvent
-from Main.model.searcher.informed.a_star import AStarSearcher
+from Main.communication.event.impl.heuristic_update_event import HeuristicUpdateEvent
+from Main.model.searcher.informed.impl.a_star import AStarSearcher
 
 
 class CustomHeuristicPopup(QDialog):
@@ -18,7 +17,7 @@ class CustomHeuristicPopup(QDialog):
         self.setLayout(self.layout)
 
         # label
-        self.label = QLabel("Please write the heuristic function to be used by the currently chosen informed search.")
+        self.label = QLabel("Please write the heuristic function to be used by the currently chosen informed search.\n")
         self.layout.addWidget(self.label)
 
         # code window
@@ -42,16 +41,14 @@ class CustomHeuristicPopup(QDialog):
             return default_file.read()
 
     def maybe_update_heuristic(self):
-        # TODO: implement
         heuristic_function = self.code_edit.toPlainText()
 
-        if (self.has_correct_syntax(heuristic_function) and self.can_solve_problem(heuristic_function)):
+        if self.has_correct_syntax(heuristic_function) and self.can_solve_problem(heuristic_function):
             self.status.setText("Successfully updated the heuristic")
             self.status.setStyleSheet(f"background-color: {"green"}; border: 1px solid gray; color: white;")
 
             environment = self.get_user_program_environment(heuristic_function)
-            event = HeuristicUpdateEvent(environment['h'])
-            self.publisher.notify(EventType.HeuristicUpdate, event)
+            self.publisher.notify(HeuristicUpdateEvent(environment['h']))
 
         # validate that the new heuristic is able to find a solution in some test map
 

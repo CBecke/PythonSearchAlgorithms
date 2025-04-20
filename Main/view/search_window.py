@@ -6,7 +6,7 @@ from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem.search_problem import SearchProblem
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
-from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
+from Main.view.left_pane.dimension_choice_pane import DimensionChoicePane
 from Main.view.left_pane.grid.GridWidget import GridWidget
 from Main.view.right_pane.algorithm_dropdown.AlgorithmDropdownDescriptionPane import AlgorithmDropdownDescriptionPane
 from Main.view.right_pane.draw_choice_pane.DrawChoicePane import DrawChoicePane
@@ -29,9 +29,9 @@ class SearchWindow(QMainWindow):
         self.setWindowTitle("Search Algorithm Illustrator")
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.generalLayout = QHBoxLayout()
-        centralWidget = QWidget(self)
-        centralWidget.setLayout(self.generalLayout)
-        self.setCentralWidget(centralWidget)
+        central_widget = QWidget(self)
+        central_widget.setLayout(self.generalLayout)
+        self.setCentralWidget(central_widget)
         self.installEventFilter(self)
 
         self.toggledRadioButton = "agent"
@@ -39,62 +39,62 @@ class SearchWindow(QMainWindow):
 
         # splitter ensures the wanted size ratio between leftPane and rightPane
         self.horizontal_splitter = QSplitter()
-        self.createLeftPane(state)
-        self.createRightPane()
+        self.create_left_pane(state)
+        self.create_right_pane()
         self.grid.set_speed_slider(self.speedSlider)
         self.horizontal_splitter.setSizes([LEFT_PANE_WIDTH, RIGHT_PANE_WIDTH])
 
         self.generalLayout.addWidget(self.horizontal_splitter)
 
 
-    def createLeftPane(self, state):
-        leftPaneWidget = QWidget()
-        self.leftPane = QVBoxLayout(leftPaneWidget)
+    def create_left_pane(self, state):
+        left_pane_widget = QWidget()
+        self.leftPane = QVBoxLayout(left_pane_widget)
 
-        self.createGrid(state)
-        self.createDimensionChoicePane()
+        self.create_grid(state)
+        self.create_dimension_choice_pane()
 
-        self.horizontal_splitter.addWidget(leftPaneWidget)
+        self.horizontal_splitter.addWidget(left_pane_widget)
 
-    def createGrid(self, state):
+    def create_grid(self, state):
         self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, state, self.publisher)
         self.leftPane.addWidget(self.grid)
 
-    def createDimensionChoicePane(self):
-        self.dimensionChoicePane = DimensionChoiceWidget(self.publisher)
-        self.leftPane.addWidget(self.dimensionChoicePane)
+    def create_dimension_choice_pane(self):
+        self.dimension_choice_pane = DimensionChoicePane(self.publisher)
+        self.leftPane.addWidget(self.dimension_choice_pane)
 
-    def createRightPane(self):
-        rightPaneWidget = QWidget()
-        self.rightPane = QVBoxLayout(rightPaneWidget)
+    def create_right_pane(self):
+        right_pane_widget = QWidget()
+        self.rightPane = QVBoxLayout(right_pane_widget)
 
-        self.createDrawChoicePane()
-        self.createAlgorithmDropdownDescriptionPane()
-        self.createSpeedSliderPane()
-        self.createOptionsPane()
-        self.createStatisticsPane()
+        self.create_draw_choice_pane()
+        self.create_algorithm_dropdown_description_pane()
+        self.create_speed_slider_pane()
+        self.create_options_pane()
+        self.create_statistics_pane()
 
-        self.horizontal_splitter.addWidget(rightPaneWidget)
+        self.horizontal_splitter.addWidget(right_pane_widget)
 
-    def createDrawChoicePane(self):
-        self.drawChoicePane = DrawChoicePane(self.publisher)
-        self.rightPane.addWidget(self.drawChoicePane)
+    def create_draw_choice_pane(self):
+        self.draw_choice_pane = DrawChoicePane(self.publisher)
+        self.rightPane.addWidget(self.draw_choice_pane)
 
-    def createAlgorithmDropdownDescriptionPane(self):
-        self.algorithmDropdown = AlgorithmDropdownDescriptionPane(self.publisher)
-        self.rightPane.addWidget(self.algorithmDropdown)
+    def create_algorithm_dropdown_description_pane(self):
+        self.algorithm_dropdown = AlgorithmDropdownDescriptionPane(self.publisher)
+        self.rightPane.addWidget(self.algorithm_dropdown)
 
-    def createSpeedSliderPane(self):
+    def create_speed_slider_pane(self):
         self.speedSlider = SpeedSliderPane(SLIDER_SPEED_RANGE[0], SLIDER_SPEED_RANGE[1])
         self.rightPane.addWidget(self.speedSlider)
 
-    def createOptionsPane(self):
-        self.optionsPane = OptionsPane(self.publisher)
-        self.rightPane.addWidget(self.optionsPane)
+    def create_options_pane(self):
+        self.options_pane = OptionsPane(self.publisher)
+        self.rightPane.addWidget(self.options_pane)
 
-    def createStatisticsPane(self):
-        self.statisticsPane = StatisticsPane(self.publisher)
-        self.rightPane.addWidget(self.statisticsPane)
+    def create_statistics_pane(self):
+        self.statistics_pane = StatisticsPane(self.publisher)
+        self.rightPane.addWidget(self.statistics_pane)
 
     def update_problem(self, problem: SearchProblem):
         grid = problem.get_state()
@@ -105,15 +105,15 @@ class SearchWindow(QMainWindow):
         self.leftPane.insertWidget(0, self.grid)
 
     def update_subscriber(self, event: Event):
-        if event.type == EventType.DimensionApplyPressed:
+        if event.event_type == EventType.DimensionApplyPressed:
             grid_size = event.data
-            dimensionedGrid = [[0 for j in range(grid_size)] for i in range(grid_size)]
+            dimensioned_grid = [[0 for _ in range(grid_size)] for _ in range(grid_size)]
             self.leftPane.removeWidget(self.grid)
             self.grid.deleteLater()
-            self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensionedGrid, self.publisher, self.toggledRadioButton)
+            self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensioned_grid, self.publisher, self.toggledRadioButton)
             self.grid.set_speed_slider(self.speedSlider)
             self.leftPane.insertWidget(0, self.grid)
-        elif event.type == EventType.RadioToggled:
+        elif event.event_type == EventType.RadioToggled:
             self.toggledRadioButton = event.data
 
     def get_grid_representation(self):
@@ -129,28 +129,13 @@ class SearchWindow(QMainWindow):
         self.grid.update_color_map(problem)
 
     def get_searcher(self):
-        return self.algorithmDropdown.get_toggled()
+        return self.algorithm_dropdown.get_toggled()
 
     def keyPressEvent(self, event):
-        self.drawChoicePane.keyPressEvent(event)
+        self.draw_choice_pane.keyPressEvent(event)
 
     def eventFilter(self, obj: QObject, event: QEvent):
         if event.type() == QEvent.Type.MouseButtonPress:
-            self.dimensionChoicePane.unfocus_lineedit()
+            self.dimension_choice_pane.unfocus_lineedit()
         return super().eventFilter(obj, event)
 
-
-
-
-"""
-def main():
-    app = QApplication([])
-    publisher = Publisher()
-    searchWindow = SearchWindow(publisher)
-    searchWindow.show()
-    sys.exit(app.exec())
-
-
-if __name__ == '__main__':
-    main()
-"""
