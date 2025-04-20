@@ -81,7 +81,7 @@ class SearchWindow(QMainWindow):
         self.rightPane.addWidget(self.drawChoicePane)
 
     def createAlgorithmDropdownDescriptionPane(self):
-        self.algorithmDropdown = AlgorithmDropdownDescriptionPane()
+        self.algorithmDropdown = AlgorithmDropdownDescriptionPane(self.publisher)
         self.rightPane.addWidget(self.algorithmDropdown)
 
     def createSpeedSliderPane(self):

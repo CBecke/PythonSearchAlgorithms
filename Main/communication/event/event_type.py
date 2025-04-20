@@ -9,4 +9,5 @@ class EventType(Enum):
     SearchConcluded = auto(),
     StateUpdate = auto(),
     ClearGridPressed = auto(),
+    HeuristicUpdate = auto(),
 

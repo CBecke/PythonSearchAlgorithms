@@ -1,9 +1,15 @@
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QPlainTextEdit, QPushButton, QHBoxLayout
 
+from Main.communication.event.event_type import EventType
+from Main.communication.event.heuristic_update_event import HeuristicUpdateEvent
+from Main.model.searcher.informed.a_star import AStarSearcher
+
 
 class CustomHeuristicPopup(QDialog):
-    def __init__(self):
+    def __init__(self, publisher):
         super().__init__()
+        self.publisher = publisher
+
         self.setWindowTitle("Custom Heuristic Creation")
         self.setModal(True) # block the main window until closed
         self.setFixedSize(750, 600)
@@ -37,22 +43,15 @@ class CustomHeuristicPopup(QDialog):
 
     def maybe_update_heuristic(self):
         # TODO: implement
-        # check to see if the new heuristic compiles as a python file
-        program = self.code_edit.toPlainText()
-        test_code = "h(5)"
-        program = program + "\n\n" + test_code
+        heuristic_function = self.code_edit.toPlainText()
 
-        with open("Main/model/searcher/informed/heuristic/user_heuristic.txt", 'w') as user_file:
-            user_file.write(program)
+        if (self.has_correct_syntax(heuristic_function) and self.can_solve_problem(heuristic_function)):
+            self.status.setText("Successfully updated the heuristic")
+            self.status.setStyleSheet(f"background-color: {"green"}; border: 1px solid gray; color: white;")
 
-        exec(program)
-        try:
-            exec(program)
-        except:
-            self.status.setText("Program Syntax Error")
-            self.status.setStyleSheet(f"background-color: {"red"}; border: 1px solid gray; color: white;")
-
-
+            environment = self.get_user_program_environment(heuristic_function)
+            event = HeuristicUpdateEvent(environment['h'])
+            self.publisher.notify(EventType.HeuristicUpdate, event)
 
         # validate that the new heuristic is able to find a solution in some test map
 
@@ -60,3 +59,41 @@ class CustomHeuristicPopup(QDialog):
             # make a_star take a heuristic as input, with the default being manhattan distance
 
         pass
+
+    def has_correct_syntax(self, heuristic_function_text: str):
+        try:
+            # to be able to use the imports in a function, we need to create an environment, since the function will
+            # live in a different namespace in exec()
+            environment = self.get_user_program_environment(heuristic_function_text)
+            user_heuristic = environment['h']
+            user_heuristic(environment['problem'], environment['current'])
+            return True
+        except:
+            self.status.setText("Program syntax error")
+            self.status.setStyleSheet(f"background-color: {"red"}; border: 1px solid gray; color: white;")
+            return False
+
+    def can_solve_problem(self, heuristic_function: str):
+        assert self.has_correct_syntax(heuristic_function)
+
+        try:
+            environment = self.get_user_program_environment(heuristic_function)
+            searcher = AStarSearcher(environment['h'])
+            problem = environment['problem']
+            search_log = searcher.logged_search(problem)
+            return problem.is_goal_state(search_log.expanded.tail.value.state)
+        except:
+            self.status.setText("Heuristic could not solve a problem.")
+            self.status.setStyleSheet(f"background-color: {"red"}; border: 1px solid gray; color: white;")
+            return False
+
+
+    def get_user_program_environment(self, heuristic_function: str) -> dict:
+        with open("Main/model/searcher/informed/heuristic/example_context.txt", 'r') as context_file:
+            context = context_file.read()
+
+        program = heuristic_function + "\n\n" + context
+        environment = dict()
+        exec(program, environment, environment)
+        return environment
+

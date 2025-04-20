@@ -3,22 +3,28 @@ from Main.model.searchproblem.position import Position
 from Main.model.searchproblem.search_node import SearchNode
 from Main.model.searchproblem.search_problem import SearchProblem
 
+def manhattan_distance(problem: SearchProblem, current: SearchNode):
+    minimum_manhattan_dist = 1000000
+
+    for goal in problem.find_goal_states():
+        current_manhattan_dist = Position.manhattan_distance(current.state, goal)
+        if current_manhattan_dist < minimum_manhattan_dist:
+            minimum_manhattan_dist = current_manhattan_dist
+
+    assert minimum_manhattan_dist >= 0, "incorrect manhattan distance"
+    return minimum_manhattan_dist
 
 class AStarSearcher(InformedSearcher):
+    def __init__(self, heuristic_function=manhattan_distance):
+        super().__init__()
+        self.heuristic_function = heuristic_function
+
     def f(self, problem: SearchProblem, current: SearchNode):
         assert current.path_cost >= 0
-        return current.path_cost + self.h(problem, current)
+        return current.path_cost + self.heuristic_function(problem, current)
 
-    def h(self, problem: SearchProblem, current: SearchNode) -> float | int:
-        minimum_manhattan_dist = 1000000
-
-        for goal in problem.find_goal_states():
-            current_manhattan_dist = Position.manhattan_distance(current.state, goal)
-            if current_manhattan_dist < minimum_manhattan_dist:
-                minimum_manhattan_dist = current_manhattan_dist
-
-        assert minimum_manhattan_dist >= 0, "incorrect manhattan distance"
-        return minimum_manhattan_dist
+    def set_heuristic(self, function):
+        self.heuristic_function = function
 
     @staticmethod
     def get_name() -> str:

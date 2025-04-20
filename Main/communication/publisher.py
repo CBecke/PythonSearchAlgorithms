@@ -16,7 +16,7 @@ class Publisher():
 
     def unsubscribe(self, event_type, subscriber):
         self.listeners[event_type].remove(subscriber)
-
+    # TODO: since we embed the EventType in the event, we can remove this first EventType parameter, and just extract it from the event?
     def notify(self, event_type: EventType, event: Event):
         for listener in self.listeners[event_type]:
             listener.update_subscriber(event)
