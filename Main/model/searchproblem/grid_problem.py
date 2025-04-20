@@ -70,19 +70,19 @@ class GridProblem(SearchProblem):
         return self.grid[state.row][state.column]
 
     def is_wall(self, state):
-        return self.get(state) == PositionType.WALL.value
+        return self.get(state) == PositionType.WALL
 
     def find_initial_state(self):
         for row in range(len(self.grid)):
             for column in range(len(self.grid[row])):
-                if self.get(Position(row, column)) == PositionType.INITIAL.value:
+                if self.get(Position(row, column)) == PositionType.INITIAL:
                     return Position(row, column)
 
     def find_goal_states(self):
         goals = set()
         for row in range(len(self.grid)):
             for column in range(len(self.grid[row])):
-                if self.get(Position(row, column)) == PositionType.GOAL.value:
+                if self.get(Position(row, column)) == PositionType.GOAL:
                     goals.add(Position(row, column))
         return goals
 
@@ -95,7 +95,7 @@ class GridProblem(SearchProblem):
             self.grid = parse_rectangle(representation)
 
         # given the "actual" grid problem: list[list[PositionType.value:int]]. Must be non-empty.
-        elif isinstance(representation, list) and isinstance(representation[0], list) and isinstance(representation[0][0], int):
+        elif isinstance(representation, list) and isinstance(representation[0], list) and isinstance(representation[0][0], PositionType):
             self.grid = representation
         else:
             raise ValueError("invalid input type")

@@ -1,8 +1,9 @@
 import sys
 
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QComboBox, QApplication, QVBoxLayout
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QComboBox, QApplication, QVBoxLayout, QPushButton
 
 from Main.model.searcher import algorithm_registry
+from Main.view.right_pane.algorithm_dropdown.custom_heuristic_popup import CustomHeuristicPopup
 
 
 class AlgorithmDropdownDescriptionPane(QWidget):
@@ -41,6 +42,10 @@ class AlgorithmDropdownDescriptionPane(QWidget):
         self.description.setWordWrap(True)
         self.description_layout.addWidget(self.description)
 
+        self.heuristic_popup_button = QPushButton("Custom Heuristic Function")
+        self.heuristic_popup_button.clicked.connect(self.open_heuristic_popup)
+        self.description_layout.addWidget(self.heuristic_popup_button)
+
     def on_dropdown_change(self, text):
         self.description.setText(self.get_description_text(text))
 
@@ -49,6 +54,9 @@ class AlgorithmDropdownDescriptionPane(QWidget):
 
     def get_toggled(self) -> str:
         return algorithm_registry.name_to_algorithm[self.dropdown.currentText()]
+
+    def open_heuristic_popup(self):
+        CustomHeuristicPopup().exec()
 
 
 if __name__ == '__main__':

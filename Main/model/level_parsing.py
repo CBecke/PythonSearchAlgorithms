@@ -9,10 +9,10 @@ def parse_rectangle(level):
     """
 
     char_mappings = {
-        ' ': PositionType.EMPTY.value,
-        '+': PositionType.WALL.value,
-        'i': PositionType.INITIAL.value,
-        'g': PositionType.GOAL.value,
+        ' ': PositionType.EMPTY,
+        '+': PositionType.WALL,
+        'i': PositionType.INITIAL,
+        'g': PositionType.GOAL,
 
     }
 

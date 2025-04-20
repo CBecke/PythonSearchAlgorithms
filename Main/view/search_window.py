@@ -1,3 +1,4 @@
+from PyQt6.QtCore import QObject, QEvent
 from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QVBoxLayout, \
     QSplitter
 
@@ -7,8 +8,8 @@ from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
 from Main.view.left_pane.DimensionChoiceWidget import DimensionChoiceWidget
 from Main.view.left_pane.grid.GridWidget import GridWidget
-from Main.view.right_pane.AlgorithmDropdownDescriptionPane import AlgorithmDropdownDescriptionPane
-from Main.view.right_pane.DrawChoicePane import DrawChoicePane
+from Main.view.right_pane.algorithm_dropdown.AlgorithmDropdownDescriptionPane import AlgorithmDropdownDescriptionPane
+from Main.view.right_pane.draw_choice_pane.DrawChoicePane import DrawChoicePane
 from Main.view.right_pane.OptionsPane import OptionsPane
 from Main.view.right_pane.SpeedSliderPane import SpeedSliderPane
 from Main.view.right_pane.StatisticsPane import StatisticsPane
@@ -31,6 +32,7 @@ class SearchWindow(QMainWindow):
         centralWidget = QWidget(self)
         centralWidget.setLayout(self.generalLayout)
         self.setCentralWidget(centralWidget)
+        self.installEventFilter(self)
 
         self.toggledRadioButton = "agent"
         self.publisher.subscribe(EventType.RadioToggled, self)
@@ -128,6 +130,14 @@ class SearchWindow(QMainWindow):
 
     def get_searcher(self):
         return self.algorithmDropdown.get_toggled()
+
+    def keyPressEvent(self, event):
+        self.drawChoicePane.keyPressEvent(event)
+
+    def eventFilter(self, obj: QObject, event: QEvent):
+        if event.type() == QEvent.Type.MouseButtonPress:
+            self.dimensionChoicePane.unfocus_lineedit()
+        return super().eventFilter(obj, event)
 
 
 

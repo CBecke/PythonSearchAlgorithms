@@ -13,7 +13,7 @@ class Model:
         agent_count = 0
         for row in range(len(grid_problem_grid)):
             for col in range(len(grid_problem_grid[row])):
-                if grid_problem_grid[row][col] == PositionType.INITIAL.value:
+                if grid_problem_grid[row][col] == PositionType.INITIAL:
                     agent_count += 1
 
         return agent_count == 1

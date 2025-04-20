@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QApplication, QPushBut
 from Main.communication.event.ResetPressedEvent import ResetPressedEvent
 from Main.communication.event.event_type import EventType
 from Main.communication.event.radio_toggled_event import RadioToggledEvent
+from Main.view.right_pane.draw_choice_pane.draw_choice_button import DrawChoiceButton
 
 
 class DrawChoicePane(QWidget):
@@ -23,10 +24,10 @@ class DrawChoicePane(QWidget):
         self.createButtons()
 
     def createButtons(self):
-        self.radioAgent = QRadioButton("Agent")
-        self.radioWall = QRadioButton("Wall")
-        self.radioGoal = QRadioButton("Goal")
-        self.radioEmpty = QRadioButton("Empty")
+        self.radioAgent = DrawChoiceButton("Agent", Qt.Key.Key_A)
+        self.radioWall = DrawChoiceButton("Wall", Qt.Key.Key_W)
+        self.radioGoal = DrawChoiceButton("Goal", Qt.Key.Key_G)
+        self.radioEmpty = DrawChoiceButton("Empty", Qt.Key.Key_E)
 
         self.buttons = [self.radioAgent, self.radioWall, self.radioGoal, self.radioEmpty]
         self.radioAgent.setChecked(True)
@@ -56,13 +57,10 @@ class DrawChoicePane(QWidget):
     def resetGrid(self):
         self.publisher.notify(EventType.ResetPressed, ResetPressedEvent())
 
+    def keyPressEvent(self, event):
+        for btn in self.buttons:
+            if btn.connected_key == event.key():
+                btn.setChecked(True)
+                self.publisher.notify(EventType.RadioToggled, RadioToggledEvent(btn.text()))
+                break
 
-
-
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = DrawChoicePane()
-    window.show()
-    sys.exit(app.exec())

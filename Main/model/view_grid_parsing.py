@@ -11,12 +11,12 @@ from Main.view.left_pane.grid.label.square import Square
 def parse_view_grid(view_grid: list[list[Square]]) -> list[list[int]]:
 
     square_mappings = {
-        EmptySquare: PositionType.EMPTY.value,
-        WallSquare: PositionType.WALL.value,
-        AgentSquare: PositionType.INITIAL.value,
-        GoalSquare: PositionType.GOAL.value,
-        GeneratedSquare: PositionType.EMPTY.value,
-        ExpandedSquare: PositionType.EMPTY.value,
+        EmptySquare: PositionType.EMPTY,
+        WallSquare: PositionType.WALL,
+        AgentSquare: PositionType.INITIAL,
+        GoalSquare: PositionType.GOAL,
+        GeneratedSquare: PositionType.EMPTY,
+        ExpandedSquare: PositionType.EMPTY,
     }
     parsed_grid = []
     for row in view_grid:

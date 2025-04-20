@@ -22,8 +22,8 @@ def test_compound():
                  [empty, wall]]
 
     output = parse_view_grid(view_grid)
-    expected = [[PositionType.GOAL.value, PositionType.INITIAL.value],
-                [PositionType.EMPTY.value, PositionType.WALL.value]]
+    expected = [[PositionType.GOAL, PositionType.INITIAL],
+                [PositionType.EMPTY, PositionType.WALL]]
 
     assert output == expected
 

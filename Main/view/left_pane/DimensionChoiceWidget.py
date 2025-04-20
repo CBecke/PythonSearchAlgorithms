@@ -1,5 +1,7 @@
 import sys
 
+from PyQt6.QtCore import Qt, QObject, QEvent
+from PyQt6.QtGui import QIntValidator
 from PyQt6.QtWidgets import QWidget, QLabel, QHBoxLayout, QApplication, QLineEdit, QPushButton
 
 from Main.communication.event.dimension_apply_pressed import DimensionApplyPressedEvent
@@ -20,8 +22,13 @@ class DimensionChoiceWidget(QWidget):
         self.layout.addWidget(self.description)
 
         self.dimensionChoice = QLineEdit()
+        self.dimensionChoice.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
+        self.dimensionChoice.returnPressed.connect(self.updateDimensions)
+        self.dimensionChoice.setPlaceholderText(f"Number of squares per row [{self.minDimension}:{self.maxDimension}]")
+        self.dimensionChoice.setValidator(QIntValidator()) # make sure only numbers can be written
+
+
         self.layout.addWidget(self.dimensionChoice)
-        self.dimensionChoice.setPlaceholderText(f"#squares [{self.minDimension}:{self.maxDimension}]")
 
         self.button = QPushButton("apply")
         self.layout.addWidget(self.button)
@@ -32,6 +39,18 @@ class DimensionChoiceWidget(QWidget):
         if nDimensions.isnumeric() and self.minDimension <= int(nDimensions) <= self.maxDimension:
             event = DimensionApplyPressedEvent(int(nDimensions))
             self.publisher.notify(event.get_type(), event)
+
+    def updateDimensions(self):
+        self.publishProblemDimensions()
+        self.dimensionChoice.clear()
+        self.unfocus_lineedit()
+
+    def unfocus_lineedit(self):
+        if self.dimensionChoice.hasFocus():
+            self.dimensionChoice.clearFocus()
+
+
+
 
 
 

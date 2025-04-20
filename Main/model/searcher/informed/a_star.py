@@ -9,7 +9,7 @@ class AStarSearcher(InformedSearcher):
         assert current.path_cost >= 0
         return current.path_cost + self.h(problem, current)
 
-    def h(self, problem: SearchProblem, current: SearchNode):
+    def h(self, problem: SearchProblem, current: SearchNode) -> float | int:
         minimum_manhattan_dist = 1000000
 
         for goal in problem.find_goal_states():
@@ -26,4 +26,7 @@ class AStarSearcher(InformedSearcher):
 
     @staticmethod
     def get_description() -> str:
-        return "A* is an informed search algorithm that expanded generated nodes based on an evaluation function f(n) = g(n) + h(n), where g(n) is the cost to reach node n, and h(n) is the estimated goal distance from n to the nearest goal. The generated node with the lowest f(n) value is expanded next. A* is both complete and optimal if the heuristic is admissible."
+        return ("A* is an informed search algorithm that expanded generated nodes based on an evaluation function " +
+                "f(n) = g(n) + h(n), where g(n) is the cost to reach node n, and h(n) is the estimated goal distance " +
+                "from n to the nearest goal. The generated node with the lowest f(n) value is expanded next. A* is " +
+                "both complete and optimal if the heuristic is admissible.")
