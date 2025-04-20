@@ -26,7 +26,7 @@ class SearchWindow(QMainWindow):
         super().__init__()
         self.publisher = publisher
         self.publisher.subscribe(EventType.DimensionApplyPressed, self)
-        self.setWindowTitle("Search Algorithm Illustrator")
+        self.setWindowTitle("Search Algorithm Visualizer")
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.generalLayout = QHBoxLayout()
         central_widget = QWidget(self)
