@@ -260,3 +260,9 @@ class GridWidget(QWidget):
                 if isinstance(current, GeneratedSquare) or isinstance(current, ExpandedSquare):
                     self.update_square(row, col, "empty")
 
+    def delete(self):
+        self.publisher.unsubscribe(EventType.RadioToggled, self)
+        self.publisher.unsubscribe(EventType.ResetPressed, self)
+        self.publisher.unsubscribe(EventType.ClearGridPressed, self)
+        self.deleteLater()
+

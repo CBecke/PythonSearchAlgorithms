@@ -12,6 +12,10 @@ class Publisher:
             self.listeners[event_type] = set()
         self.listeners[event_type].add(subscriber)
 
+    def unsubscribe(self, event_type, subscriber):
+        assert subscriber in self.listeners[event_type], "Tried to remove non-existent subscriber"
+        self.listeners[event_type].remove(subscriber)
+
     def notify(self, event: Event):
         for listener in self.listeners[event.get_type()]:
             listener.update_subscriber(event)
