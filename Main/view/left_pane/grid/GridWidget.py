@@ -142,12 +142,11 @@ class GridWidget(QWidget):
         self.step_iter = iter(log)
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.render_step)
-        self.timer.setInterval(self.slider_to_interval(self.speedSlider.slider.value()))
+
+        initial_speed = self.speedSlider.slider.value()
+        self.timer.setInterval(self.slider_to_interval(initial_speed))
         self.timer.start()
 
-        self.speedSlider.speed_changed.connect(
-            lambda v: self.timer.setInterval(self.slider_to_interval(v))
-        )
         self.publisher.notify(SearchConcludedEvent(log.n_generated()))
 
     def render_step(self):
@@ -182,6 +181,11 @@ class GridWidget(QWidget):
 
     def set_speed_slider(self, speed_slider):
         self.speedSlider = speed_slider
+        self.speedSlider.speed_changed.connect(self.on_speed_changed)
+
+    def on_speed_changed(self, slider_value):
+        if (hasattr(self, 'timer') and self.timer is not None):
+            self.timer.setInterval(self.slider_to_interval(slider_value))
 
     def update_color_map(self, problem: SearchProblem):
         assert isinstance(problem, grid_problem.GridProblem), "the current update_color_map assumes 1) no negative cost cycles and 2) a 2d array structure - which is true for GridProblem"
@@ -259,4 +263,10 @@ class GridWidget(QWidget):
                 current = self.grid[row][col]
                 if isinstance(current, GeneratedSquare) or isinstance(current, ExpandedSquare):
                     self.update_square(row, col, "empty")
+
+    def delete(self):
+        self.publisher.unsubscribe(EventType.RadioToggled, self)
+        self.publisher.unsubscribe(EventType.ResetPressed, self)
+        self.publisher.unsubscribe(EventType.ClearGridPressed, self)
+        self.deleteLater()
 

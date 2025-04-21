@@ -109,7 +109,7 @@ class SearchWindow(QMainWindow):
             grid_size = event.data
             dimensioned_grid = [[0 for _ in range(grid_size)] for _ in range(grid_size)]
             self.leftPane.removeWidget(self.grid)
-            self.grid.deleteLater()
+            self.grid.delete()
             self.grid = GridWidget(LEFT_PANE_WIDTH, LEFT_PANE_WIDTH, dimensioned_grid, self.publisher, self.toggledRadioButton)
             self.grid.set_speed_slider(self.speedSlider)
             self.leftPane.insertWidget(0, self.grid)
