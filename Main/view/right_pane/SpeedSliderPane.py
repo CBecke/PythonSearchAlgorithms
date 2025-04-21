@@ -18,8 +18,6 @@ class SpeedSliderPane(QWidget):
         self.description = QLabel("Speed:")
         self.layout.addWidget(self.description)
 
-
-
         self.slider = QSlider(Qt.Orientation.Horizontal)
         self.slider.setRange(self.minimum, self.maximum)
         self.slider.setValue((self.minimum+self.maximum)//2)

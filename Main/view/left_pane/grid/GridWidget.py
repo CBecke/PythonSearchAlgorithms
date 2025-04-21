@@ -1,25 +1,23 @@
 from typing import Collection
 
-from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtCore import QTimer
 from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtWidgets import QWidget, QGridLayout, QApplication
+from PyQt6.QtWidgets import QWidget, QGridLayout
 
 from Main.model.data_structure.node import Node
 from Main.model.data_structure.queue import Queue
 from Main.model.searcher.informed.impl.best_first_searcher import BestFirstSearcher
 from Main.model.searcher.search_log import SearchLog
 from Main.model.searchproblem import grid_problem
-from Main.model.searchproblem.grid_problem import GridProblem
 from Main.model.searchproblem.position import Position
-from Main.model.searchproblem.position_type import PositionType
 from Main.model.searchproblem.search_problem import SearchProblem
 from Main.communication.event.event import Event
 from Main.communication.event.event_type import EventType
 from Main.communication.event.impl.search_concluded_event import SearchConcludedEvent
 from Main.view.left_pane.grid.label.impl.agentSquare import AgentSquare
 from Main.view.left_pane.grid.label.impl.emptySquare import EmptySquare
-from Main.view.left_pane.grid.label.impl.search_square.expandedSquare import ExpandedSquare
 from Main.view.left_pane.grid.label.impl.goalSquare import GoalSquare
+from Main.view.left_pane.grid.label.impl.search_square.expandedSquare import ExpandedSquare
 from Main.view.left_pane.grid.label.impl.search_square.generatedSquare import GeneratedSquare
 from Main.view.left_pane.grid.label.impl.wallSquare import WallSquare
 from Main.view.left_pane.grid.label.squareFactory import SquareFactory
@@ -79,9 +77,7 @@ class GridWidget(QWidget):
                         self.update_square(row, col, "empty")
 
         elif event.get_type() == EventType.ClearGridPressed:
-            if self.search_thread and self.search_thread.isRunning():
-                self.search_thread.stop()
-                self.search_thread.wait()
+            self.stop_rendering()
 
             self.clear_search_squares()
 
@@ -111,10 +107,8 @@ class GridWidget(QWidget):
 
 
     def update_square(self, row, col, type_to: str):
-        print(f"Updating square at ({row}, {col}) to {type_to}")
         old_widget = self.grid[row][col]
         if old_widget:
-            print(f"Removing old widget: {old_widget}")
             self.layout.removeWidget(old_widget)
             old_widget.deleteLater()
 
@@ -139,41 +133,55 @@ class GridWidget(QWidget):
     def render_search(self, log: SearchLog):
         self.grid_locked = True
 
-        if self.search_thread and self.search_thread.isRunning():
-            self.search_thread.stop()
-            self.search_thread.wait()
+        # stop any previous timer
+        if getattr(self, "timer", None):
+            self.timer.stop()
 
         self.clear_search_squares()
 
-        self.search_thread = SearchRendererThread(log, self.speedSlider)
-        self.search_thread.render_step.connect(self.handle_render_step)
-        self.speedSlider.speed_changed.connect(self.search_thread.update_speed)
+        self.step_iter = iter(log)
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.render_step)
+        self.timer.setInterval(self.slider_to_interval(self.speedSlider.slider.value()))
+        self.timer.start()
 
-        self.search_thread.finished.connect(self.render_finished)
-        self.search_thread.start()
+        self.speedSlider.speed_changed.connect(
+            lambda v: self.timer.setInterval(self.slider_to_interval(v))
+        )
         self.publisher.notify(SearchConcludedEvent(log.n_generated()))
 
-    def update_thread_speed(self, value):
-        if self.search_thread and self.search_thread.isRunning():
-            self.search_thread.update_speed(value)
+    def render_step(self):
+        try:
+            generated_set_node, expanded_node = next(self.step_iter)
+        except StopIteration:
+            self.timer.stop()
+            self.unlock()
+            return
 
-    def handle_render_step(self, row, col, render_type_str):
-        square = self.grid[row][col]
-        if not isinstance(square, AgentSquare) and not isinstance(square, GoalSquare):
-            self.update_square(row, col, render_type_str)
+        position = expanded_node.value.state
+        row, col = position.row, position.column
+        if not isinstance(self.grid[row][col], AgentSquare) and not isinstance(self.grid[row][col], GoalSquare):
+            self.update_square(row, col, "expanded")
 
-    def render_finished(self):
-        self.unlock()
+        for search_node in generated_set_node.value:
+            position = search_node.state
+            row, col = position.row, position.column
+            if not isinstance(self.grid[row][col], AgentSquare) and not isinstance(self.grid[row][col], GoalSquare):
+                self.update_square(row, col, "generated")
 
     def stop_rendering(self):
-        if self.search_thread and self.search_thread.isRunning():
-            self.search_thread.stop()
-            self.search_thread.wait()
-            self.unlock()
+        if hasattr(self, "timer") and self.timer.isActive():
+            self.timer.stop()
+        self.step_iter = iter([])
+        self.unlock()
+
+    def slider_to_interval(self, slider_value):
+        min_val = self.speedSlider.minimum
+        max_val = self.speedSlider.maximum
+        return max(min_val, max_val-slider_value+min_val)
 
     def set_speed_slider(self, speed_slider):
         self.speedSlider = speed_slider
-        self.speedSlider.speed_changed.connect(self.update_thread_speed)
 
     def update_color_map(self, problem: SearchProblem):
         assert isinstance(problem, grid_problem.GridProblem), "the current update_color_map assumes 1) no negative cost cycles and 2) a 2d array structure - which is true for GridProblem"
@@ -199,8 +207,6 @@ class GridWidget(QWidget):
                 green = max_color_value - round(color_step * distance)
                 goal_distance_grid[row][col] = f"rgb({red}, {green}, {blue})"
         self.distance_color_grid = goal_distance_grid
-
-
 
 
     def goal_distances(self, problem: SearchProblem):
@@ -253,44 +259,4 @@ class GridWidget(QWidget):
                 current = self.grid[row][col]
                 if isinstance(current, GeneratedSquare) or isinstance(current, ExpandedSquare):
                     self.update_square(row, col, "empty")
-
-
-# multi-threading with the help of ChatGPT
-class SearchRendererThread(QThread):
-    render_step = pyqtSignal(int, int, str)
-    finished = pyqtSignal()
-
-    def __init__(self, log, speed_slider):
-        super().__init__()
-        self.log = log
-        self.running = True
-        self.speedSlider = speed_slider
-        self.update_speed(self.speedSlider.slider.value())
-
-    def run(self):
-        for node_generated, node_expanded in self.log:
-            if not self.running:
-                break
-
-            position = node_expanded.value.state
-            row, col = position.row, position.column
-            self.render_step.emit(row, col, "expanded")
-
-            # node_generated is a Node whose value is a set of SearchNode
-            for search_node in node_generated.value:
-                position = search_node.state
-                row, col = position.row, position.column
-                self.render_step.emit(row, col, "generated")
-
-            self.msleep(self.sleep_duration)
-
-        self.finished.emit()
-
-    def stop(self):
-        self.running = False
-
-    def update_speed(self, value):
-        min_val = self.speedSlider.minimum
-        max_val = self.speedSlider.maximum
-        self.sleep_duration = max(min_val, max_val - value + min_val)
 
