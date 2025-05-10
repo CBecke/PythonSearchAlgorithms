@@ -27,3 +27,6 @@ Start the program using:
 ```bash
 python -m Main.main
 ```
+
+## Demo and Project Tour Videos
+I have made two videos to go over this repo: a demo for showing the features of the app [here](https://www.youtube.com/watch?v=ZIs6ERL1wxE), and a tour of the project's motivation, process, and code [here](https://www.youtube.com/watch?v=9bdsJaN9eOw).
